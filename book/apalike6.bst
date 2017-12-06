@@ -64,6 +64,7 @@ ENTRY
     volume
     language
     year
+    doi
   }
   {}
   { label extra.label sort.label }
@@ -514,6 +515,8 @@ FUNCTION {article}
   new.block
   note output
   fin.entry
+  new.block
+  format.doi
   format.language
 }
 

@@ -1,0 +1,178 @@
+\documentclass[showtrims, 11pt,a4paper]{memoir}
+\pretitle{\begin{center}\Huge\bfseries}
+\title{臺灣維管束植物紅皮書名錄}
+\posttitle{\par\vskip1em{\normalfont\normalsize\scshape The Red List of Vascular Plants of Taiwan\par\vfill}\end{center}}
+\vfill
+% 行政院農業委員會特有生物研究保育中心\\
+% Endemic Species Research Institute, COA, EY, R.O.C. (Taiwan)
+% 
+% 行政院農業委員會林務局\\
+% Forestry Bureau, COA, EY, R.O.C. (Taiwan)
+% 
+% 台灣植物分類學會\\
+% Taiwan Society of Plant Systematics
+% 
+\vfill
+\vfill
+\author{臺灣植物紅皮書編輯委員會\\
+Editor Committee, the Red List of Vascular Plants of Taiwan}
+\date{\vspace{-5ex}}
+
+
+\copypagestyle{memoirStylePages}{headings}
+\nouppercaseheads
+\copypagestyle{memoirStylePages}{headings}
+\makeevenhead{memoirStylePages}{}{--~\thepage~--}{\footnotesize\itshape\rightmark}
+\makeoddhead{memoirStylePages}{\footnotesize\itshape\leftmark}{--~\thepage~--}{}
+\makeheadrule{memoirStylePages}{\textwidth}{\normalrulethickness}
+\makeevenfoot{memoirStylePages}{}{}{}
+\makeoddfoot{memoirStylePages}{}{}{}
+\makepsmarks{memoirStylePages}{%
+      \createmark{chapter}{left}{nonumber}{}{}
+}
+
+
+%%%% GENERAL PACKAGES FORMATTING %%%%%
+\usepackage{amsmath,amsthm,amssymb} % for mathematical fonts
+%\usepackage[lmargin=1.5cm,rmargin=1cm,tmargin=1.5cm,bmargin=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[bookmarks, pdfauthor={臺灣植物紅皮書編輯委員會}, pdftitle={臺灣維管束植物紅皮書名錄}]{hyperref}
+\usepackage{epstopdf}   % figure eps to pdf
+\usepackage{natbib}     % for bibliography style%\usepackage{apalike}
+\usepackage{apalike} % apalike
+\usepackage{float}      % floating environment
+\usepackage{marginnote} % margin note package
+\usepackage{pdfpages} % pdfpage
+\usepackage{enumitem}
+\usepackage{longtable}
+% small capital
+\usepackage{bold-extra}
+\usepackage{libertine}
+% multi column
+\usepackage{multicol}
+% line spacing
+\linespread{1}\selectfont
+\usepackage{footnote}
+% for xelatex
+\usepackage{fontspec}
+\usepackage{xeCJK}
+%\setmainfont{Times}
+%\setCJKmainfont{PMingLiU}
+%\seteCJKmainfont{}
+%\setCJKsansfont{Heiti TC Light}
+\setCJKmainfont[BoldFont=Songti TC Light]{Songti TC Light}
+\newCJKfontfamily\Kana{YuMincho}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\usepackage{xunicode}
+
+%\usepackage{fancyhdr}%,fancyvrb}
+%\pagestyle{fancy}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+%\fancyhead{}
+%\fancyhead[RO]{\fontsize{8}{10} \selectfont --~\thepage~--}
+%\fancyhead[LE]{\fontsize{8}{10} \selectfont --~\thepage~--}
+%\fancyhead[LO]{\fontsize{8}{10} \selectfont \leftmark}
+%\fancyhead[RE]{\fontsize{8}{10} \selectfont \rightmark}
+%\lfoot{}
+%\cfoot{}
+%\rfoot{}
+
+% make index
+\usepackage{makeidx}
+\makeatletter
+\renewenvironment{theindex}
+  {\if@twocolumn
+      \@restonecolfalse
+   \else
+      \@restonecoltrue
+   \fi
+   \setlength{\columnseprule}{0pt}
+   \setlength{\columnsep}{35pt}
+   \begin{multicols}{4}[\section*{\indexname}]
+   \markboth{\MakeUppercase\indexname}%
+            {\MakeUppercase\indexname}%
+   \thispagestyle{plain}
+   \setlength{\parindent}{0pt}
+   \setlength{\parskip}{0pt plus 0.3pt}
+   \relax
+   \let\item\@idxitem}%
+  {\end{multicols}\if@restonecol\onecolumn\else\clearpage\fi}
+\makeatother
+%\usepackage[justific=RaggedRight]{idxlayout}
+\makeindex
+
+\setlist{leftmargin=0.1cm,itemindent=0.05cm,labelwidth=\itemindent,labelsep=0.05cm,align=left}
+% trim and bleed
+\setstocksize{297mm}{210mm}
+\settrimmedsize{0.95\stockheight}{0.95\stockwidth}{*}
+\settypeblocksize{0.9\stockheight}{0.9\stockwidth}{*}
+\setlrmarginsandblock{0.10\paperwidth}{*}{1} % Left and right margin
+\setulmarginsandblock{0.15\paperwidth}{*}{1}  % Upper and lower margin
+\checkandfixthelayout
+
+\setheadfoot{\onelineskip}{\onelineskip}
+%\setheadfoot{2pt}{8mm}
+\setheaderspaces{*}{\onelineskip}{*}
+\checkandfixthelayout
+\quarkmarks
+
+% add dictionary-like entry
+\newcommand\entry[3][]{\small \noindent\textsf{\textbf{#2}}\ 
+        #3\ifx\relax#1\relax\markboth{#2}{#2}\else\markboth{#1}{#1}\fi
+        \par}\nopagebreak[4]
+
+%\usepackage{atbegshi}
+%\AtBeginShipout{\special{pdf: put @thispage <</TrimBox [30.0 30.0 500 600]>>}}
+%\special{pdf: put @thispage <</TrimBox [30.0 30.0 500 600]>>}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% rename 
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\Large}{\thechapter.}{12pt}{\Large}
+\usepackage{titletoc}
+\renewcommand{\contentsname}{目\hspace{2em}錄}
+\renewcommand\indexname{學名索引}
+%\renewcommand\tablename{表}
+%\renewcommand\thetable{\arabic{chapter}.\arabic{table}}
+%\renewcommand\figurename{圖}
+%\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
+\renewcommand\appendixname{附\hspace{2em}錄}
+%\renewcommand*\contentsname{Table of Contents}
+\renewcommand{\bibname}{參考文獻}
+\renewcommand\bibsection{\chapter*{\refname}}
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+\pagestyle{memoirStylePages}
+\begin{document}
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+    \pagenumbering{roman}
+    \tableofcontents
+    \cleardoublepage
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+    \include{ch0_abstract}
+    \linespread{1}\selectfont
+    \include{ch1_intro}
+    \include{ch2_assessment}
+    \include{ch3_redlist}
+    \include{ch4_global_thr_checklist}
+    \include{ch5_acknowledgement}
+    \input{ch6_references}
+    \addcontentsline{toc}{chapter}{參考文獻}
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\indexname}
+    \begin{footnotesize}
+    \printindex
+    \end{footnotesize}
+    \input{copyright}
+\end{document}
