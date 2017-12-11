@@ -1,23 +1,4 @@
 \documentclass[showtrims, 11pt,a4paper]{memoir}
-\pretitle{\begin{center}\Huge\bfseries}
-\title{臺灣維管束植物紅皮書名錄}
-\posttitle{\par\vskip1em{\normalfont\normalsize\scshape The Red List of Vascular Plants of Taiwan\par\vfill}\end{center} \\
-行政院農業委員會特有生物研究保育中心 \\
-Endemic Species Research Institute, COA, EY, R.O.C. (Taiwan) \\
-\hfill \\
-行政院農業委員會林務局 \\
-Forestry Bureau, COA, EY, R.O.C. (Taiwan) \\
-\hfill \\
-台灣植物分類學會 \\
-Taiwan Society of Plant Systematics
-\hfill \\
-}
-\vfill
-\vfill
-\author{臺灣植物紅皮書編輯委員會\\
-Editor Committee, the Red List of Vascular Plants of Taiwan}
-\date{\vspace{-5ex}}
-
 
 \copypagestyle{memoirStylePages}{headings}
 \nouppercaseheads
@@ -51,20 +32,28 @@ Editor Committee, the Red List of Vascular Plants of Taiwan}
 % multi column
 \usepackage{multicol}
 % line spacing
-\linespread{1}\selectfont
+\linespread{1.2}\selectfont
 \usepackage{footnote}
+
 % for xelatex
+%\setCJKmainfont[BoldFont=Songti TC Light]{Songti TC Light}
+
 \usepackage{fontspec}
 \usepackage{xeCJK}
-%\setmainfont{Times}
-%\setCJKmainfont{PMingLiU}
-%\seteCJKmainfont{}
-%\setCJKsansfont{Heiti TC Light}
-\setCJKmainfont[BoldFont=Songti TC Light]{Songti TC Light}
+\setmainfont{Times New Roman}
+\setCJKmainfont{Songti TC}
+\newCJKfontfamily\Kai{Kaiti TC}
+\newCJKfontfamily\Hangul{Batang}
 \newCJKfontfamily\Kana{YuMincho}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt
-\usepackage{xunicode}
+\setlength{\parskip}{0.3cm}
+\setmonofont[WordSpace={0.7,0.0,0.0}]{Courier}
+\usepackage{xltxtra}
+%\usepackage{xunicode}
+
+
+
 
 %\usepackage{fancyhdr}%,fancyvrb}
 %\pagestyle{fancy}
@@ -151,9 +140,7 @@ Editor Committee, the Red List of Vascular Plants of Taiwan}
 
 \pagestyle{memoirStylePages}
 \begin{document}
-\begin{titlingpage}
-\maketitle
-\end{titlingpage}
+    \include{titlepage}
     \pagenumbering{roman}
     \tableofcontents
     \cleardoublepage
