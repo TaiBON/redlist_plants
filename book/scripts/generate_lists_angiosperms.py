@@ -67,9 +67,10 @@ def main():
                     fam_list = curs.fetchall()
             EACH_ORDER = '''  \item[%i. ] \\textbf{\\textsc{%s} %s} ''' % (order_list[j][0], \
                     order_list[j][1], order_list[j][2])
-            ORDER_IDX = ''' \index{%s@\\textsc{%s}} \index{%s}''' % (order_list[j][1], \
-                    order_list[j][1], order_list[j][2])
-            f.write(EACH_ORDER + ORDER_IDX + '\n')
+            #ORDER_IDX = ''' \index{%s@\\textsc{%s}} \index{%s}''' % (order_list[j][1], \
+            #        order_list[j][1], order_list[j][2])
+            #f.write(EACH_ORDER + ORDER_IDX + '\n')
+            f.write(EACH_ORDER + '\n')
             f.write('    ' + NUM_BEGIN + '\n')
             for k in range(0,len(fam_list)):
                 # check if the family exists in Taiwan or not
@@ -87,7 +88,8 @@ def main():
                     EACH_FAM = '''      \item[%i.%s] %s %s%s ''' % (order_list[j][0], \
                            fam_list[k][0], fam_list[k][1], fam_list[k][2], EX)
                     FAM_IDX = ''' \index{%s} \index{%s} ''' % (fam_list[k][1], fam_list[k][2])
-                f.write(EACH_FAM + FAM_IDX + '\n')
+                #f.write(EACH_FAM + FAM_IDX + '\n')
+                f.write(EACH_FAM + '\n')
                 f.write('''        \\input{lists/%s}''' % fam_list[k][1] + '\n')
                 ITEM_BEGIN = '''  \\begin{itemize}'''
                 ITEM_END = '''\end{itemize}'''
@@ -126,8 +128,9 @@ def main():
                                 curs.execute(QUERY_SP_GEN)
                                 splist = curs.fetchall()
                                 #\item[] \textit{Abies}\index{Abies@\textit{Abies}}
-                                GENUS_STEM = ''' \item[] \\textit{%s}\index{%s@\\textit{%s}} %s
-                                ''' % ( GENUS, GENUS, GENUS, genus_zh)
+                                #GENUS_STEM = ''' \item[] \\textit{%s}\index{%s@\\textit{%s}} %s
+                                GENUS_STEM = ''' \item[] \\textit{%s} %s
+                                ''' % ( GENUS, genus_zh)
                                 #f.write('\n')
                                 ff.write(GENUS_STEM + '\n')
                                 ff.write(ITEM_BEGIN + '\n')

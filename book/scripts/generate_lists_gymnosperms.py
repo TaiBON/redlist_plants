@@ -60,7 +60,8 @@ def main():
                 fam_list = curs.fetchall()
         EACH_ORDER = '''  \item[%s. ] \\textbf{\\textsc{%s} %s} ''' % (order_list[o][0],                     order_list[o][1], order_list[o][2])
         ORDER_IDX = ''' \index{%s@\\textsc{%s}} \index{%s}''' % (order_list[o][1],                     order_list[o][1], order_list[o][2])
-        f.write(EACH_ORDER + ORDER_IDX + '\n')
+        #f.write(EACH_ORDER + ORDER_IDX + '\n')
+        f.write(EACH_ORDER + '\n')
         f.write('    ' + NUM_BEGIN + '\n')
         ##### FAMILIES
         for fl in range(0, len(fam_list)):
@@ -76,7 +77,8 @@ def main():
             else:
                 EACH_FAM = '''      \item[%s.%s] %s %s%s ''' % (order_list[o][0],                            fam_list[fl][0], fam_list[fl][1], fam_list[fl][2], EX)
                 family_idX = ''' \index{%s} \index{%s} ''' % (fam_list[fl][1], fam_list[fl][2])
-            f.write(EACH_FAM + family_idX + '\n')
+            #f.write(EACH_FAM + family_idX + '\n')
+            f.write(EACH_FAM + '\n')
             f.write('''        \\input{lists/%s}''' % fam_list[fl][1] + '\n')
             ITEM_BEGIN = '''  \\begin{itemize}'''
             ITEM_END = '''\end{itemize}'''
@@ -114,8 +116,9 @@ def main():
                             curs.execute(QUERY_SP_GEN)
                             splist = curs.fetchall()
                             #\item[] \textit{Abies}\index{Abies@\textit{Abies}}
-                            GENUS_STEM = ''' \item[] \\textit{%s}\index{%s@\\textit{%s}} %s
-                            ''' % ( GENUS, GENUS, GENUS, genus_zh)
+                            #GENUS_STEM = ''' \item[] \\textit{%s}\index{%s@\\textit{%s}} %s
+                            GENUS_STEM = ''' \item[] \\textit{%s} %s
+                            ''' % ( GENUS, genus_zh)
                             #f.write('\n')
                             ff.write(GENUS_STEM + '\n')
                             ff.write(ITEM_BEGIN + '\n')

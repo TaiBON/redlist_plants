@@ -1,4 +1,4 @@
-\documentclass[showtrims, 11pt,a4paper]{memoir}
+\documentclass[11pt,a4paper]{memoir}
 
 \copypagestyle{memoirStylePages}{headings}
 \nouppercaseheads
@@ -34,6 +34,9 @@
 % line spacing
 \linespread{1.2}\selectfont
 \usepackage{footnote}
+%\usepackage{imakeidx} 
+\usepackage{xcolor}
+\usepackage{color}
 
 % for xelatex
 %\setCJKmainfont[BoldFont=Songti TC Light]{Songti TC Light}
@@ -88,14 +91,17 @@
    \let\item\@idxitem}%
   {\end{multicols}\if@restonecol\onecolumn\else\clearpage\fi}
 \makeatother
+
 %\usepackage[justific=RaggedRight]{idxlayout}
+
 \makeindex
+%\makeindex[name=zh,title={中名索引}]
 
 \setlist{leftmargin=0.1cm,itemindent=0.05cm,labelwidth=\itemindent,labelsep=0.05cm,align=left}
 % trim and bleed
 \setstocksize{297mm}{210mm}
-\settrimmedsize{0.95\stockheight}{0.95\stockwidth}{*}
-\settypeblocksize{0.9\stockheight}{0.9\stockwidth}{*}
+\settrimmedsize{0.99\stockheight}{0.99\stockwidth}{*}
+\settypeblocksize{0.99\stockheight}{0.99\stockwidth}{*}
 \setlrmarginsandblock{0.10\paperwidth}{*}{1} % Left and right margin
 \setulmarginsandblock{0.15\paperwidth}{*}{1}  % Upper and lower margin
 \checkandfixthelayout
@@ -120,7 +126,7 @@
 
 % rename 
 \usepackage{titlesec}
-\titleformat{\chapter}{\normalfont\Large}{\thechapter.}{12pt}{\Large}
+\titleformat{\chapter}{\normalfont\huge}{\thechapter.}{20pt}{\huge}
 \usepackage{titletoc}
 \renewcommand{\contentsname}{目\hspace{2em}錄}
 \renewcommand\indexname{學名索引}
