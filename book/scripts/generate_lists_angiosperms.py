@@ -19,7 +19,7 @@ def main():
             curs.execute(GET_CLADES_SQL)
             clade_list = curs.fetchall()
 
-    f = open('./ch3_3_angiosperms.tex', 'w')
+    #f = open('./ch3_3_angiosperms.tex', 'w')
     NUM_BEGIN = '\\begin{enumerate}'
     NUM_END = '\end{enumerate}'
     ##### CLADES
@@ -42,9 +42,9 @@ def main():
                 order_list = curs.fetchall()
         CLADE_TITLE='\\noindent \\normalsize\\textsc{\\textbf{%s} %s}\selectfont \\\\' % (clade_list[i][1], clade_list[i][2])
         FOOTNOTE_FONT='\\footnotesize\selectfont'
-        f.write(CLADE_TITLE + '\n')
-        f.write(FOOTNOTE_FONT + '\n')
-        f.write(NUM_BEGIN + '\n')
+        #f.write(CLADE_TITLE + '\n')
+        #f.write(FOOTNOTE_FONT + '\n')
+        #f.write(NUM_BEGIN + '\n')
         for j in range(0, len(order_list)):
             GET_FAM_SQL = '''
             select 
@@ -69,9 +69,9 @@ def main():
                     order_list[j][1], order_list[j][2])
             #ORDER_IDX = ''' \index{%s@\\textsc{%s}} \index{%s}''' % (order_list[j][1], \
             #        order_list[j][1], order_list[j][2])
-            #f.write(EACH_ORDER + ORDER_IDX + '\n')
-            f.write(EACH_ORDER + '\n')
-            f.write('    ' + NUM_BEGIN + '\n')
+            ##f.write(EACH_ORDER + ORDER_IDX + '\n')
+            #f.write(EACH_ORDER + '\n')
+            #f.write('    ' + NUM_BEGIN + '\n')
             for k in range(0,len(fam_list)):
                 # check if the family exists in Taiwan or not
                 if fam_list[k][4]:
@@ -88,9 +88,9 @@ def main():
                     EACH_FAM = '''      \item[%i.%s] %s %s%s ''' % (order_list[j][0], \
                            fam_list[k][0], fam_list[k][1], fam_list[k][2], EX)
                     FAM_IDX = ''' \index{%s} \index{%s} ''' % (fam_list[k][1], fam_list[k][2])
-                #f.write(EACH_FAM + FAM_IDX + '\n')
-                f.write(EACH_FAM + '\n')
-                f.write('''        \\input{lists/%s}''' % fam_list[k][1] + '\n')
+                ##f.write(EACH_FAM + FAM_IDX + '\n')
+                #f.write(EACH_FAM + '\n')
+                #f.write('''        \\input{lists/%s}''' % fam_list[k][1] + '\n')
                 ITEM_BEGIN = '''  \\begin{itemize}'''
                 ITEM_END = '''\end{itemize}'''
      
@@ -195,10 +195,10 @@ def main():
                     ff.write('  '+ITEM_END + '\n')
                 ff.close()
                 print(fam_list[k][0],fam_list[k][1],fam_list[k][2])
-            f.write('    ' + NUM_END + '\n')
-        f.write(NUM_END + '\n')
-        f.write('\\vspace{2ex} \n')
-    f.close()
+            #f.write('    ' + NUM_END + '\n')
+        #f.write(NUM_END + '\n')
+        #f.write('\\vspace{2ex} \n')
+    #f.close()
 if __name__=='__main__':
     main()
     conn.close()

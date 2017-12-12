@@ -27,12 +27,17 @@ exp_table:
 	$(PYTHON) scripts/batch_create_tab.py
 
 pdf:
+	stats
+	exp_table
 	$(XELATEX) $(BASE)
 	# make index
 	makeindex $(BASE)
 	# make chinese (zh) index
 	$(ZHIDX) -z bihua -s indexheader.ist $(BASE).idx
+	# split scientific name index and Chinese name index
+	scripts/insert_zhindex_name.sh
 	$(XELATEX) $(BASE)
+
 zhindex:
 	$(ZHIDX) -z bihua -s indexheader.ist $(BASE).idx
 

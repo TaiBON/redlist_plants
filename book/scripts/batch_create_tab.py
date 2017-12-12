@@ -14,7 +14,7 @@ def main():
             cri = ',criteria'
         elif criteria == False:
             cri = ''
-        QUERY_CATEGORY = '''select family||' ('||family_zh||')',name,zh_name%s
+        QUERY_CATEGORY = '''select family,family_zh,name,zh_name%s
         from twredlist2017 where category like '%s' and plant_type = %s
         order by family,fullname;''' % (cri, redlistCat, ptype)
         with conn:
@@ -34,33 +34,37 @@ def main():
             tex.write('\\footnotesize\selectfont' + '\n')
             # xetex table
             TABLE_BEGIN = '''%%\\begin{table}[!h]
-        \\begin{longtable}{p{3cm}p{5cm}p{3cm}p{4cm}}
+        {\def\\arraystretch{1.5}\\tabcolsep=2pt
+        \\begin{longtable}{p{2.5cm}p{2.5cm}p{4.5cm}p{2.5cm}p{3cm}}
         \\toprule
-          科名 (科中名) & 分類群學名 & 分類群中名 %s \\\\
+          科名 & 科中名 & 分類群學名 & 分類群中名 %s \\\\
         \\midrule 
         \\endfirsthead
 
         {{\\bfseries 續前頁 }} \\\\
-        科名 (科中名) & 分類群學名 & 分類群中名 %s \\\\
+        科名 & 科中名 & 分類群學名 & 分類群中名 %s \\\\
         \\midrule
         \\endhead
             ''' % (cri, cri)
             TABLE_END = '''    \\bottomrule
         \\end{longtable}
-    %%\\end{table}'''
+    %%\\end{table}
+        }
+    '''
             tex.write(TABLE_BEGIN)
             # write content
             for item in range(len(redlist)):
+                # family,family_zh,name,zh_name,criteria
                 redlist[item] = list(redlist[item])
-                SP_STEM = redlist[item][1].split(' ')
+                SP_STEM = redlist[item][2].split(' ')
                 EPITHET = SP_STEM[1]
                 GENUS = SP_STEM[0]
-                ZH_IDX = ' \index{%s} ' % redlist[item][2]
+                ZH_IDX = ' \index{%s} ' % redlist[item][3]
                 
-                redlist[item][1] = g.fmtname(redlist[item][1], format_type = 'custom',
+                redlist[item][2] = g.fmtname(redlist[item][2], format_type = 'custom',
                                         italic_b="\\textit{", italic_e="}", split= False)
-                redlist[item][1] = re.sub('&', r'\&', redlist[item][1])
-                redlist[item][3] = re.sub('&', r'\&', redlist[item][3])
+                redlist[item][2] = re.sub('&', r'\&', redlist[item][2])
+                redlist[item][4] = re.sub('&', r'\&', redlist[item][4])
                 
                 ### IDX
 
@@ -93,8 +97,6 @@ def main():
                 else:
                     ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}} ''' % (
                         GENUS, GENUS, EPITHET, EPITHET)
-                
-                
                 ### /IDX
                 joinedItem = ' & '.join(redlist[item]) + ITEM_IDX + ZH_IDX + '\\\\' + '\n'
                 tex.write('    ' + joinedItem)
