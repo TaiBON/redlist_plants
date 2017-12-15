@@ -3,8 +3,8 @@
 \copypagestyle{memoirStylePages}{headings}
 \nouppercaseheads
 \copypagestyle{memoirStylePages}{headings}
-\makeevenhead{memoirStylePages}{}{--~\thepage~--}{\footnotesize\itshape\rightmark}
-\makeoddhead{memoirStylePages}{\footnotesize\itshape\leftmark}{--~\thepage~--}{}
+\makeoddhead{memoirStylePages}{}{--~\footnotesize\thepage~--}{\footnotesize\itshape\rightmark}
+\makeevenhead{memoirStylePages}{\footnotesize\itshape\leftmark}{--~\footnotesize\thepage~--}{}
 \makeheadrule{memoirStylePages}{\textwidth}{\normalrulethickness}
 \makeevenfoot{memoirStylePages}{}{}{}
 \makeoddfoot{memoirStylePages}{}{}{}
@@ -17,7 +17,7 @@
 \usepackage{amsmath,amsthm,amssymb} % for mathematical fonts
 %\usepackage[lmargin=1.5cm,rmargin=1cm,tmargin=1.5cm,bmargin=1.5cm]{geometry}
 \usepackage{graphicx}
-\usepackage[bookmarks, pdfauthor={臺灣植物紅皮書編輯委員會}, pdftitle={臺灣維管束植物紅皮書名錄}]{hyperref}
+\usepackage[bookmarks, pdfauthor={臺灣植物紅皮書編輯委員會}, pdftitle={2017 臺灣維管束植物紅皮書名錄}]{hyperref}
 \usepackage{epstopdf}   % figure eps to pdf
 \usepackage{natbib}     % for bibliography style%\usepackage{apalike}
 \usepackage{apalike} % apalike
@@ -37,6 +37,7 @@
 %\usepackage{imakeidx} 
 \usepackage{xcolor}
 \usepackage{color}
+\renewcommand{\thepage}{\footnotesize{\arabic{page}}}
 
 % for xelatex
 %\setCJKmainfont[BoldFont=Songti TC Light]{Songti TC Light}
@@ -97,7 +98,7 @@
 \makeindex
 %\makeindex[name=zh,title={中名索引}]
 
-\setlist{leftmargin=0.1cm,itemindent=0.05cm,labelwidth=\itemindent,labelsep=0.05cm,align=left}
+\setlist{leftmargin=0.3cm,itemindent=-0.2cm,labelwidth=0.1cm,labelsep=0.05cm,align=left,rightmargin=0.05cm}
 % trim and bleed
 \setstocksize{297mm}{210mm}
 %\settrimmedsize{0.99\stockheight}{0.99\stockwidth}{*}
@@ -143,9 +144,11 @@
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
 \renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+\hyphenchar\font=-1
 
 \pagestyle{memoirStylePages}
 \begin{document}
+    % no break words
     \include{titlepage}
     \pagenumbering{roman}
     \tableofcontents
@@ -156,8 +159,10 @@
     \linespread{1}\selectfont
     \include{ch1_intro}
     \include{ch2_assessment}
+    \linespread{0.8}\selectfont
     \include{ch3_redlist}
     \large\selectfont
+    \linespread{1}\selectfont
     \include{ch5_acknowledgement}
     \normalsize\selectfont
     \linespread{1}\selectfont
@@ -167,6 +172,7 @@
     \phantomsection
     \addcontentsline{toc}{chapter}{\indexname}
     \begin{footnotesize}
+    \linespread{0.5}\selectfont
     \printindex
     \end{footnotesize}
     \normalsize\selectfont

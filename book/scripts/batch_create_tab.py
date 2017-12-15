@@ -59,11 +59,15 @@ def main():
                 SP_STEM = redlist[item][2].split(' ')
                 EPITHET = SP_STEM[1]
                 GENUS = SP_STEM[0]
+                NAME = redlist[item][2]
+                IPNI_URL = '''http://www.ipni.org/ipni/advPlantNameSearch.do?find_genus=%s&find_species=%s&find_rankToReturn=spec'''
+                # theplantlist
+                TP_LIST = '''\\href{http://www.theplantlist.org/tpl1.1/search?q=%s}''' % NAME.replace(' ', '+')
                 ZH_IDX = ' \index{%s} ' % redlist[item][3]
                 
                 redlist[item][2] = g.fmtname(redlist[item][2], format_type = 'custom',
                                         italic_b="\\textit{", italic_e="}", split= False)
-                redlist[item][2] = re.sub('&', r'\&', redlist[item][2])
+                redlist[item][2] = TP_LIST + '{' + re.sub('&', r'\&', redlist[item][2]) + '}'
                 redlist[item][4] = re.sub('&', r'\&', redlist[item][4])
                 
                 ### IDX

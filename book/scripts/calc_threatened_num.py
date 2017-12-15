@@ -20,7 +20,7 @@ def main():
     QUERY_NA = '''select count(*)  from twredlist2017 where category like 'NA%';'''
     QUERY_DD = '''select count(*)  from twredlist2017 where category like 'DD%';'''
     QUERY_DDT = '''select count(*)  from twredlist2017 where category like 'DD%' and criteria like 'DD-T%';'''
-    QUERY_DDP = '''select count(*)  from twredlist2017 where category like 'DD% and criteria like 'DD-P';'''
+    QUERY_DDP = '''select count(*)  from twredlist2017 where category like 'DD% and criteria like 'DD-P%';'''
 
     with conn:
         with conn.cursor() as curs:
@@ -47,7 +47,7 @@ def main():
 
             ex = ew + re
             evaluated = alltaxa - na
-            threatened = alltaxa - na - lc - dd - nt
+            threatened = cr + en + vu
             national_threatened_ratio = round(threatened/evaluated * 100, 2)
             national_nt_ratio = round(nt/evaluated * 100, 2)
 
