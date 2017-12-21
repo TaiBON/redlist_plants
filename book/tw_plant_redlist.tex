@@ -1,47 +1,26 @@
 \documentclass[11pt,a4paper]{memoir}
 
-\copypagestyle{memoirStylePages}{headings}
-\nouppercaseheads
-\copypagestyle{memoirStylePages}{headings}
-\makeoddhead{memoirStylePages}{}{--~\footnotesize\thepage~--}{\footnotesize\itshape\rightmark}
-\makeevenhead{memoirStylePages}{\footnotesize\itshape\leftmark}{--~\footnotesize\thepage~--}{}
-\makeheadrule{memoirStylePages}{\textwidth}{\normalrulethickness}
-\makeevenfoot{memoirStylePages}{}{}{}
-\makeoddfoot{memoirStylePages}{}{}{}
-\makepsmarks{memoirStylePages}{%
-      \createmark{chapter}{left}{nonumber}{}{}
-}
-
-
 %%%% GENERAL PACKAGES FORMATTING %%%%%
-\usepackage{amsmath,amsthm,amssymb} % for mathematical fonts
-%\usepackage[lmargin=1.5cm,rmargin=1cm,tmargin=1.5cm,bmargin=1.5cm]{geometry}
-\usepackage{graphicx}
+
 \usepackage[bookmarks, pdfauthor={臺灣植物紅皮書編輯委員會}, pdftitle={2017 臺灣維管束植物紅皮書名錄}]{hyperref}
+\usepackage{amsmath,amsthm,amssymb} % for mathematical fonts
+\usepackage{bold-extra}
+\usepackage{enumitem}
 \usepackage{epstopdf}   % figure eps to pdf
+\usepackage{float}      % floating environment
+\usepackage{graphicx}
 \usepackage{natbib}     % for bibliography style%\usepackage{apalike}
 \usepackage{apalike} % apalike
-\usepackage{float}      % floating environment
-\usepackage{marginnote} % margin note package
-\usepackage{pdfpages} % pdfpage
-\usepackage{enumitem}
-\usepackage{longtable}
-% small capital
-\usepackage{bold-extra}
+\usepackage{longtable}  % small capital
 \usepackage{libertine}
 % multi column
 \usepackage{multicol}
-% line spacing
-\linespread{1.2}\selectfont
 \usepackage{footnote}
-%\usepackage{imakeidx} 
+\usepackage{pdfpages} % pdfpage
 \usepackage{xcolor}
 \usepackage{color}
-\renewcommand{\thepage}{\footnotesize{\arabic{page}}}
 
-% for xelatex
-%\setCJKmainfont[BoldFont=Songti TC Light]{Songti TC Light}
-
+%%%%% <XETEX> %%%%%
 \usepackage{fontspec}
 \usepackage{xeCJK}
 \setmainfont{Times New Roman}
@@ -54,24 +33,42 @@
 \setlength{\parskip}{0.3cm}
 \setmonofont[WordSpace={0.7,0.0,0.0}]{Courier}
 \usepackage{xltxtra}
-%\usepackage{xunicode}
+\renewcommand{\thepage}{\footnotesize{\arabic{page}}}
+\linespread{1.2}\selectfont % 字型間距
+\setlength\columnsep{18pt} % 兩欄之間的空隙
+%%%%% </XETEX> %%%%%
 
+%%%%% HEADER STYLE %%%%%%
+\copypagestyle{memoirStylePages}{headings}
+\nouppercaseheads
+\copypagestyle{memoirStylePages}{headings}
+\copypagestyle{chapter}{headings}
+\setlength{\headwidth}{\stockwidth+5em}
+\makerunningwidth{memoirStylePages}{\headwidth}
+\definecolor{myred}{RGB}{255,0,0}
+\newcommand\frameboxl[1]{%
+  \fcolorbox{myred}{myred}{\makebox[2cm][l]{\textcolor{white}{\bfseries#1}}}%
+}
 
+\newcommand\frameboxr[1]{%
+  \fcolorbox{myred}{myred}{\makebox[2cm][r]{\textcolor{white}{\bfseries#1}}}%
+}
+\renewcommand\rightmark{The Red List of Vascular Plants of Taiwan, 2017}
+\renewcommand\leftmark{2017 臺灣維管束植物紅皮書名錄}
+\makeoddhead{memoirStylePages}{}{}{\footnotesize\leftmark~\frameboxl{\footnotesize\thepage}}
+\makeevenhead{memoirStylePages}{\frameboxr{\footnotesize\thepage}~\footnotesize\rightmark}{}{}
+\makeoddhead{chapter}{}{}{\footnotesize\leftmark~\frameboxl{\footnotesize\thepage}}
+\makeevenhead{chapter}{\frameboxr{\footnotesize\thepage}~\footnotesize\rightmark}{}{}
+% %\makeheadrule{memoirStylePages}{\textwidth}{\normalrulethickness}
+\makeevenfoot{memoirStylePages}{}{}{}
+\makeoddfoot{memoirStylePages}{}{}{}
+\makepsmarks{memoirStylePages}{%
+       \createmark{chapter}{left}{nonumber}{}{}
+}
 
+%%%%% </HEADER> %%%%%
 
-%\usepackage{fancyhdr}%,fancyvrb}
-%\pagestyle{fancy}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
-%\fancyhead{}
-%\fancyhead[RO]{\fontsize{8}{10} \selectfont --~\thepage~--}
-%\fancyhead[LE]{\fontsize{8}{10} \selectfont --~\thepage~--}
-%\fancyhead[LO]{\fontsize{8}{10} \selectfont \leftmark}
-%\fancyhead[RE]{\fontsize{8}{10} \selectfont \rightmark}
-%\lfoot{}
-%\cfoot{}
-%\rfoot{}
-
-% make index
+%%%%% <INDEX> %%%%%
 \usepackage{makeidx}
 \makeatletter
 \renewenvironment{theindex}
@@ -81,19 +78,17 @@
       \@restonecoltrue
    \fi
    \setlength{\columnseprule}{0pt}
-   \setlength{\columnsep}{35pt}
+   \setlength{\columnsep}{20pt}
    \begin{multicols}{4}[\section*{\indexname}]
    \markboth{\MakeUppercase\indexname}%
             {\MakeUppercase\indexname}%
    \thispagestyle{plain}
    \setlength{\parindent}{0pt}
-   \setlength{\parskip}{0pt plus 0.3pt}
+   \setlength{\parskip}{0pt minus 2pt}
    \relax
    \let\item\@idxitem}%
   {\end{multicols}\if@restonecol\onecolumn\else\clearpage\fi}
 \makeatother
-
-%\usepackage[justific=RaggedRight]{idxlayout}
 
 \makeindex
 %\makeindex[name=zh,title={中名索引}]
@@ -101,10 +96,10 @@
 \setlist{leftmargin=0.3cm,itemindent=-0.2cm,labelwidth=0.1cm,labelsep=0.05cm,align=left,rightmargin=0.05cm}
 % trim and bleed
 \setstocksize{297mm}{210mm}
+\setlrmarginsandblock{25mm}{25mm}{*}
+\setulmarginsandblock{20mm}{25mm}{*}
+%\setulmarginsandblock{25mm}{25mm}{*}
 %\settrimmedsize{0.99\stockheight}{0.99\stockwidth}{*}
-\settypeblocksize{0.90\stockheight}{0.90\stockwidth}{*}
-\setlrmarginsandblock{0.10\paperwidth}{*}{1} % Left and right margin
-\setulmarginsandblock{0.15\paperwidth}{*}{1}  % Upper and lower margin
 \checkandfixthelayout
 
 \setheadfoot{\onelineskip}{\onelineskip}
@@ -131,8 +126,8 @@
 \usepackage{titletoc}
 \renewcommand{\contentsname}{目\hspace{2em}錄}
 \renewcommand\indexname{學名索引}
-%\renewcommand\tablename{表}
-%\renewcommand\thetable{\arabic{chapter}.\arabic{table}}
+\renewcommand\tablename{表}
+\renewcommand\thetable{\arabic{chapter}.\arabic{table}}
 %\renewcommand\figurename{圖}
 %\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
 \renewcommand\appendixname{附\hspace{2em}錄}
@@ -146,8 +141,14 @@
 \renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
 \hyphenchar\font=-1
 
+
+\titleformat*{\chapter}{\normalfont\huge\bfseries\color{myred}}
+\titleformat*{\section}{\normalfont\Large\bfseries\color{myred}}
+\usepackage{tabu}
+
 \pagestyle{memoirStylePages}
 \begin{document}
+    \taburulecolor{red}
     % no break words
     \include{titlepage}
     \pagenumbering{roman}
@@ -156,10 +157,9 @@
     \pagenumbering{arabic}
     \setcounter{page}{1}
     \include{ch0_abstract}
-    \linespread{1}\selectfont
+    \linespread{1.5}\selectfont
     \include{ch1_intro}
     \include{ch2_assessment}
-    \linespread{0.8}\selectfont
     \include{ch3_redlist}
     \large\selectfont
     \linespread{1}\selectfont
@@ -172,7 +172,7 @@
     \phantomsection
     \addcontentsline{toc}{chapter}{\indexname}
     \begin{footnotesize}
-    \linespread{0.5}\selectfont
+    \linespread{0.9}\selectfont
     \printindex
     \end{footnotesize}
     \normalsize\selectfont

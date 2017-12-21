@@ -130,6 +130,34 @@ class Genlist(object):
                 fullnameWithAuthors = ' '.join([fname_sp, subrank_name, \
                   subepithet, ' '.join(fullname_split[subrank_idx+2:len(fullname_split)])])
             fullnameNoAuthors = ' '.join([fname_sp, subrank_name, subepithet])
+
+        elif len(subordinate_status) > 1:
+            subrank_idx = []
+            subrank_name = []
+            subepithet = []
+            for srn in range(0,len(subordinate_status)):
+                subrank_idx.append(fullname_split.index(subordinate_status[srn][1]))
+                subrank_name.append(subordinate_status[srn][1])
+                subepithet.append(italic_b + fullname_split[subordinate_status[srn][0]+1] + italic_e)
+            fnameCont = []
+            for srn in range(0, len(subordinate_status)):
+                if srn + 1  == len(subordinate_status):
+                    authorStopIdx = len(fullname_split)
+                else:
+                    authorStopIdx = subrank_idx[srn + 1]
+                fc = ' '.join([subrank_name[srn], subepithet[srn], ' '.join(fullname_split[subrank_idx[srn] + 2: authorStopIdx])])
+                fnameCont.append(fc)
+            if withSpAuthor == True:
+                fullnameWithAuthors = ' '.join([fname_sp, fullname_split[2:subrank_idx[0]][0], ' '.join(fnameCont)])
+            elif withSpAuthor == False:
+                fullnameWithAuthors = ' '.join([fname_sp, ' '.join(fnameCont)])
+            fnameNoAuthors = []
+            for srn in range(0, len(subordinate_status)):
+                fc = ' '.join([subrank_name[srn], subepithet[srn]])
+                fnameNoAuthors.append(fc)
+            fullnameNoAuthors = ' '.join([fname_sp, ' '.join(fnameNoAuthors)])
+
+
         else:
             authors = fullname_split[2:length_fullname]
             authors_join = ' '.join(authors)

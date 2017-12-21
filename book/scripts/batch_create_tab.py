@@ -23,7 +23,7 @@ def main():
                 catResults = curs.fetchall()
         return(catResults)
     
-    def writeTable(output, redlist, plantTypes, criteria = False, cols = 4):
+    def writeTable(output, redlist, plantTypes, criteriaName, criteria = False, cols = 4):
         align = 'l' * cols 
         if criteria == True:
             cri = '& 評估標準'
@@ -41,11 +41,12 @@ def main():
         \\midrule 
         \\endfirsthead
 
-        {{\\bfseries 續前頁 }} \\\\
+        \multicolumn{4}{l}{\\bfseries\Large\color{red}{%s}} \\\\
+        \\toprule
         科名 & 科中名 & 分類群學名 & 分類群中名 %s \\\\
         \\midrule
         \\endhead
-            ''' % (cri, cri)
+            ''' % (cri, criteriaName, cri)
             TABLE_END = '''    \\bottomrule
         \\end{longtable}
     %%\\end{table}
@@ -107,11 +108,12 @@ def main():
             tex.write(TABLE_END)
 
     expCatogories = ['CR', 'EN', 'VU']
+    expCatZh = ['國家極危 (NCR) 類別維管束植物名錄(續)', '國家瀕危 (NEN) 類別維管束植物名錄(續)','國家易危 (NVU) 類別維管束植物名錄(續)']
     plantTypes = ['Lycophytes 石松類植物', 'Monilophytes 蕨類植物', 'Gymnosperms 裸子植物', 'Angiosperms 被子植物']
     for cat in range(len(expCatogories)):
         for i in range(0, 4):
             CAT = queryCategory(expCatogories[cat], ptype = i, criteria = True)
-            writeTable('ch3_%s_%i.tex' % (expCatogories[cat], i), CAT, plantTypes[i], criteria=True, cols = 4)
+            writeTable('ch3_%s_%i.tex' % (expCatogories[cat], i), CAT, plantTypes[i], expCatZh[cat], criteria=True, cols = 4)
             i = i + 1
             print('Exporting ch3_%s_%i.tex' % (expCatogories[cat], i))
     conn.close()

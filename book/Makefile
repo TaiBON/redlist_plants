@@ -13,11 +13,10 @@ skeleton:
 	# generate the skeleton of APG (all of the orders and families)
 	#$(PYTHON) scripts/generate_apg_skeleton.py 
 	# generate angiosperm species lists and keys from PostgreSQL database 
-	$(PYTHON) scripts/generate_lists_ferns.py
-	$(PYTHON) scripts/generate_lists_gymnosperms.py
-	$(PYTHON) scripts/generate_lists_angiosperms.py
-	# avoid empty itmes (dirty hack, need to be fixed
-	cp ch3_3_angiosperms_t.tex ch3_3_angiosperms.tex
+	$(PYTHON) scripts/generate_checklists.py -o ch3_3_lycophytes.tex -t ppgi -p 0 -e lists
+	$(PYTHON) scripts/generate_checklists.py -o ch3_3_ferns.tex -t ppgi -p 1 -e lists
+	$(PYTHON) scripts/generate_checklists.py -o ch3_3_gymnosperms.tex -t gymnosperms_order -p 2 -e lists
+	$(PYTHON) scripts/generate_checklists.py -o ch3_3_angiosperms.tex -t apgiv_families -p 3 -e lists
 	#$(PYTHON) scripts/generate_list_angiosperms.py 
 	# 產生檢索表中所有的物種名稱，以及加上 latex 索引
 	#$(PYTHON) scripts/export_allsp_name.py
