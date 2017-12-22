@@ -139,8 +139,12 @@
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
 \renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
-\hyphenchar\font=-1
 
+
+%% No hyphenation
+%\hyphenchar\font=-1
+\exhyphenpenalty=100000
+\hyphenpenalty=100000
 
 \titleformat*{\chapter}{\normalfont\huge\bfseries\color{myred}}
 \titleformat*{\section}{\normalfont\Large\bfseries\color{myred}}
@@ -170,10 +174,14 @@
     \addcontentsline{toc}{chapter}{參考文獻}
     \cleardoublepage
     \phantomsection
+    \chapter*{索引}
+    \pagestyle{memoirStylePages}
     \addcontentsline{toc}{chapter}{\indexname}
     \begin{footnotesize}
-    \linespread{0.9}\selectfont
-    \printindex
+    \linespread{1.1}\selectfont
+        \begin{flushleft}
+            \printindex
+        \end{flushleft}
     \end{footnotesize}
     \normalsize\selectfont
     \input{copyright}

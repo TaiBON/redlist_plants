@@ -101,8 +101,8 @@ def getChecklist(output, family_table, ptype, export_dir = 'lists'):
                             endemic = ''
                         ## NA 說明
                         if IUCN_CAT == 'NA':
-                            CRITERIA = CRITERIA.replace('雜交種', '$^h$').replace('歸化種', '$^n$').replace('品型','$^f$').replace('栽培變種','$^c$)').replace('Vagrant', '$^v$')
-                            IUCN_CAT = IUCN_CAT + ' ' + CRITERIA
+                            CRITERIA = CRITERIA.replace('雜交種', '$^h$').replace('歸化種', '$^n$').replace('品型','$^f$').replace('栽培變種','$^c$').replace('Vagrant', '$^v$')
+                            IUCN_CAT = IUCN_CAT + CRITERIA
                         iucn = ' %s'% IUCN_CAT
                         ##### 處理中名的同物異名
                         ZH_NAME_SYN = splist[sp][8]
@@ -203,9 +203,9 @@ synFGenus, synFSpec, synFSpec, synFSubrank, synFSubEpi, synFSubrank, synFSubEpi,
                             #ITEM_STEM = '''        \item[] \\textit{%s. %s} %s \\textit{%s} %s \\textit{%s} ''' % (
                             #    G_ABB, EPITHET, SUBRANK, \
                             #            SUBEPITHET, SUBRANK2, SUBEPI2)
-                            ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@%s \\textit{%s}!%s %s@%s \\textit{%s}} ''' % (
-                                GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK, \
-                                        SUBEPITHET, SUBRANK2, SUBEPI2, SUBRANK2, SUBEPI2)
+                            ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@%s \\textit{%s} %s \\textit{%s}} ''' % (
+                                GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK2, \
+                                        SUBEPI2, SUBRANK, SUBEPITHET, SUBRANK2, SUBEPI2)
                         else:
                             # ITEM_STEM = '''        \item[] \\textit{%s. %s} ''' % (G_ABB, EPITHET)
                             ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}} ''' % (

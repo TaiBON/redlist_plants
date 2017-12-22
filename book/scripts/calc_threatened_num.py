@@ -51,7 +51,8 @@ def main():
             national_threatened_ratio = round(threatened/evaluated * 100, 2)
             national_nt_ratio = round(nt/evaluated * 100, 2)
 
-    ABSTRACT = '''\\noindent 本報告依據國際自然保育聯盟(International Union for Conservation of Nature, IUCN)
+    ABSTRACT = '''
+\\noindent 本報告依據國際自然保育聯盟(International Union for Conservation of Nature, IUCN)
 建議類別與標準對所有臺灣野生維管束植物進行國家紅皮書名錄評估。具有野生紀錄的維管束植物共 %s 分類群，
 其中 %i 分類群不適用(Not Applicable)區域評估篩選條件， %i 分類群進入評估流程。
 結果臺灣有 %i 種野生維管束植物已經滅絕，其中 %i 種屬於野外絕滅(Extinct in the Wild)，
@@ -63,7 +64,8 @@ def main():
 國家受威脅和接近受脅的野生維管束植物種數分別占評估種數的 %.1f \\%% 及 %.1f \\%%。 
 ''' % (alltaxa, na, evaluated, ex, ew, re, threatened, cr, en, vu, nt, dd, lc, national_threatened_ratio, national_nt_ratio)
 
-    RESULT_STATS = '''臺灣的野生維管束植物共 %i 分類群，
+    RESULT_STATS = '''\linespread{1.5}\selectfont
+臺灣的野生維管束植物共 %i 分類群，
 其中 %i 分類群不適用(Not Applicable)區域評估篩選條件，
 %i 分類群進入評估流程。評估的結果顯示臺灣有 %i 種野生維管束植物已經滅絕，
 其中 %i 種屬於野外絕滅(Extinct in the Wild)，%i 種屬於區域滅絕(Regionally Extinct)。
