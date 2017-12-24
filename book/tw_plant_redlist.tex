@@ -5,6 +5,7 @@
 \usepackage[bookmarks, pdfauthor={臺灣植物紅皮書編輯委員會}, pdftitle={2017 臺灣維管束植物紅皮書名錄}]{hyperref}
 \usepackage{amsmath,amsthm,amssymb} % for mathematical fonts
 \usepackage{bold-extra}
+\usepackage{caption}
 \usepackage{enumitem}
 \usepackage{epstopdf}   % figure eps to pdf
 \usepackage{float}      % floating environment
@@ -23,9 +24,10 @@
 %%%%% <XETEX> %%%%%
 \usepackage{fontspec}
 \usepackage{xeCJK}
-\setmainfont{Times New Roman}
+%\setmainfont{Noto Serif CJK TC Light}
+%\setCJKmainfont{Songti TC}
 \setCJKmainfont{Songti TC}
-\newCJKfontfamily\Kai{Kaiti TC}
+\newCJKfontfamily\Kai{Noto Sans T Chinese Light}
 \newCJKfontfamily\Hangul{Batang}
 \newCJKfontfamily\Kana{YuMincho}
 \XeTeXlinebreaklocale "zh"
@@ -43,6 +45,7 @@
 \nouppercaseheads
 \copypagestyle{memoirStylePages}{headings}
 \copypagestyle{chapter}{headings}
+\copypagestyle{chapter*}{headings}
 \setlength{\headwidth}{\stockwidth+5em}
 \makerunningwidth{memoirStylePages}{\headwidth}
 \definecolor{myred}{RGB}{255,0,0}
@@ -124,11 +127,11 @@
 \usepackage{titlesec}
 \titleformat{\chapter}{\normalfont\huge}{\thechapter.}{20pt}{\huge}
 \usepackage{titletoc}
-\renewcommand{\contentsname}{目\hspace{2em}錄}
-\renewcommand\indexname{學名索引}
-\renewcommand\tablename{表}
+\renewcommand{\contentsname}{\Kai{目\hspace{2em}錄}}
+\renewcommand\indexname{\Kai{學名索引}}
+\renewcommand\tablename{\color{red}{\Kai{表}}}
 \renewcommand\thetable{\arabic{chapter}.\arabic{table}}
-%\renewcommand\figurename{圖}
+\renewcommand\figurename{\color{red}{\Kai{圖}}}
 %\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
 \renewcommand\appendixname{附\hspace{2em}錄}
 %\renewcommand*\contentsname{Table of Contents}
@@ -146,43 +149,57 @@
 \exhyphenpenalty=100000
 \hyphenpenalty=100000
 
-\titleformat*{\chapter}{\normalfont\huge\bfseries\color{myred}}
-\titleformat*{\section}{\normalfont\Large\bfseries\color{myred}}
+\titleformat*{\chapter}{\normalfont\huge\Kai\color{myred}}
+\titleformat*{\section}{\normalfont\Large\Kai\color{myred}}
 \usepackage{tabu}
 
 \pagestyle{memoirStylePages}
 \begin{document}
     \taburulecolor{red}
     % no break words
-    \include{titlepage}
-    \pagenumbering{roman}
-    \tableofcontents
-    \cleardoublepage
-    \pagenumbering{arabic}
-    \setcounter{page}{1}
-    \include{ch0_abstract}
-    \linespread{1.5}\selectfont
-    \include{ch1_intro}
-    \include{ch2_assessment}
+    \begin{Kai}
+        \include{titlepage}
+        \pagenumbering{roman}
+        \tableofcontents
+        \cleardoublepage
+        \pagenumbering{arabic}
+        \setcounter{page}{1}
+        \include{ch0_abstract}
+        \linespread{1.5}\selectfont
+        \include{ch1_intro}
+        \include{ch2_assessment}
+    \end{Kai}
     \include{ch3_redlist}
     \large\selectfont
     \linespread{1}\selectfont
+    \begin{Kai}
     \include{ch5_acknowledgement}
     \normalsize\selectfont
     \linespread{1}\selectfont
     \input{ch6_references}
     \addcontentsline{toc}{chapter}{參考文獻}
+    \end{Kai}
     \cleardoublepage
     \phantomsection
     \chapter*{索引}
     \pagestyle{memoirStylePages}
     \addcontentsline{toc}{chapter}{\indexname}
     \begin{footnotesize}
+    \pagestyle{memoirStylePages}
+    因篇幅關係，僅列出種及種下單位之學名不含作者。括號內的學名代表該分類群在本名錄中所接受的學名(中名索引亦同)。\\
+    例如：\\
+    
+    \textit{Adenia formosana} (= \textit{Adenia heterophylla}) ，\\
+    
+    \noindent 其中 \textit{Adenia heterophylla} 為本名錄中所接受的學名，而 \textit{Adenia formosana} 
+    為同物異名(包含鑑定錯誤、非法、無效以及不同分類觀念下之學名)
     \linespread{1.1}\selectfont
         \begin{flushleft}
             \printindex
         \end{flushleft}
     \end{footnotesize}
     \normalsize\selectfont
+    \begin{Kai}
     \input{copyright}
+    \end{Kai}
 \end{document}

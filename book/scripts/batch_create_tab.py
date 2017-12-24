@@ -9,44 +9,41 @@ conn = pg.connect(DSN)
 
 def main():
 
-    def queryCategory(redlistCat, ptype, criteria = True):
-        if criteria == True:
-            cri = ',criteria'
-        elif criteria == False:
-            cri = ''
-        QUERY_CATEGORY = '''select family,family_zh,name,zh_name%s
+    def queryCategory(redlistCat, ptype):
+        QUERY_CATEGORY = '''select family,family_zh,name,zh_name,criteria
         from twredlist2017 where category like '%s' and plant_type = %s
-        order by family,fullname;''' % (cri, redlistCat, ptype)
+        order by family,fullname;''' % (redlistCat, ptype)
         with conn:
             with conn.cursor() as curs:
                 curs.execute(QUERY_CATEGORY)
                 catResults = curs.fetchall()
         return(catResults)
     
-    def writeTable(output, redlist, plantTypes, criteriaName, criteria = False, cols = 4):
-        align = 'l' * cols 
+    def writeTable(output, redlist, plantTypes, criteriaName, criteria = False):
         if criteria == True:
             cri = '& 評估標準'
         elif criteria == False:
             cri = ''
         with open(output, 'w') as tex:
-            tex.write('\\noindent\\normalfont\selectfont %s' % plantTypes + '\n')
+            #tex.write('\\noindent\\normalfont\selectfont %s' % plantTypes + '\n')
             tex.write('\\footnotesize\selectfont' + '\n')
             # xetex table
             TABLE_BEGIN = '''%%\\begin{table}[!h]
         {\def\\arraystretch{1.5}\\tabcolsep=2pt
-        \\begin{longtable}{p{2.5cm}p{2.5cm}p{4.5cm}p{2.5cm}p{3cm}}
+        \\begin{longtable}{p{2.5cm}p{2cm}p{5cm}p{2.5cm}p{3cm}}
+        \multicolumn{2}{l}{\large{%s}} & & \\\\
+        & & & &\\\\
         \\toprule
-          科名 & 科中名 & 分類群學名 & 分類群中名 %s \\\\
+          \color{red}{\\textbf{科名}} & \color{red}{\\textbf{科中名}} & \color{red}{\\textbf{分類群學名}} & \color{red}{\\textbf{分類群中名}} & \color{red}{\\textbf{評估標準}} \\\\
         \\midrule 
         \\endfirsthead
 
-        \multicolumn{4}{l}{\\bfseries\Large\color{red}{%s}} \\\\
+        \multicolumn{5}{l}{\large\color{red}{\Kai{%s}}} \\\\
         \\toprule
-        科名 & 科中名 & 分類群學名 & 分類群中名 %s \\\\
+        \color{red}{\\textbf{科名}} & \color{red}{\\textbf{科中名}} & \color{red}{\\textbf{分類群學名}} & \color{red}{\\textbf{分類群中名}} & \color{red}{\\textbf{評估標準}} \\\\
         \\midrule
         \\endhead
-            ''' % (cri, criteriaName, cri)
+            ''' % (plantTypes, criteriaName)
             TABLE_END = '''    \\bottomrule
         \\end{longtable}
     %%\\end{table}
@@ -112,8 +109,8 @@ def main():
     plantTypes = ['Lycophytes 石松類植物', 'Monilophytes 蕨類植物', 'Gymnosperms 裸子植物', 'Angiosperms 被子植物']
     for cat in range(len(expCatogories)):
         for i in range(0, 4):
-            CAT = queryCategory(expCatogories[cat], ptype = i, criteria = True)
-            writeTable('ch3_%s_%i.tex' % (expCatogories[cat], i), CAT, plantTypes[i], expCatZh[cat], criteria=True, cols = 4)
+            CAT = queryCategory(expCatogories[cat], ptype = i)
+            writeTable('ch3_%s_%i.tex' % (expCatogories[cat], i), CAT, plantTypes[i], expCatZh[cat])
             i = i + 1
             print('Exporting ch3_%s_%i.tex' % (expCatogories[cat], i))
     conn.close()
