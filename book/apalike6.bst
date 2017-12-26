@@ -45,6 +45,7 @@ ENTRY
     author
     booktitle
     chapter
+    doi
     edition
     editor
     howpublished
@@ -64,7 +65,6 @@ ENTRY
     volume
     language
     year
-    doi
   }
   {}
   { label extra.label sort.label }
@@ -107,6 +107,7 @@ FUNCTION {output}
     'output.nonnull
   if$
 }
+
 
 FUNCTION {output.check}
 { 't :=
@@ -504,6 +505,8 @@ FUNCTION {article}
   new.block
   format.title "title" output.check
   new.block
+  format.doi
+  new.block
   crossref missing$
     { journal emphasize "journal" output.check
       format.vol.num.pages output
@@ -516,7 +519,6 @@ FUNCTION {article}
   note output
   fin.entry
   new.block
-  format.doi
   format.language
 }
 

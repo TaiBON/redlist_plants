@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 BASE=tw_plant_redlist
+DRAFT=tw_plant_redlist_draft
 ZHIDX=/Users/psilotum/bin/zhmakeindex
 PYTHON=python3
 RAMDISK=/Volumes/ramdisk
@@ -36,6 +37,18 @@ pdf: stats exp_table
 	# split scientific name index and Chinese name index
 	sh ./scripts/insert_zhindex_name.sh
 	$(XELATEX) $(BASE)
+
+draft: stats exp_table
+	$(XELATEX) $(DRAFT)
+	# make index
+	makeindex $(DRAFT)
+	# make chinese (zh) index
+	$(ZHIDX) -z bihua -s indexheader.ist $(DRAFT).idx
+	# split scientific name index and Chinese name index
+	sh ./scripts/insert_zhindex_name.sh
+	$(XELATEX) $(DRAFT)
+
+
 
 zhindex:
 	$(ZHIDX) -z bihua -s indexheader.ist $(BASE).idx

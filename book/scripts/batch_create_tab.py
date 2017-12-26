@@ -30,7 +30,7 @@ def main():
             # xetex table
             TABLE_BEGIN = '''%%\\begin{table}[!h]
         {\def\\arraystretch{1.5}\\tabcolsep=2pt
-        \\begin{longtable}{p{2.5cm}p{2cm}p{5cm}p{2.5cm}p{3cm}}
+        \\begin{longtable}{L{2.5cm}L{2cm}L{5cm}L{2.5cm}L{3cm}}
         \multicolumn{2}{l}{\large{%s}} & & \\\\
         & & & &\\\\
         \\toprule
@@ -61,7 +61,7 @@ def main():
                 IPNI_URL = '''http://www.ipni.org/ipni/advPlantNameSearch.do?find_genus=%s&find_species=%s&find_rankToReturn=spec'''
                 # theplantlist
                 TP_LIST = '''\\href{http://www.theplantlist.org/tpl1.1/search?q=%s}''' % NAME.replace(' ', '+')
-                ZH_IDX = ' \index{%s} ' % redlist[item][3]
+                ZH_IDX = ' \index{%s@{\Song{%s}}} ' % (redlist[item][3], redlist[item][3])
                 
                 redlist[item][2] = g.fmtname(redlist[item][2], format_type = 'custom',
                                         italic_b="\\textit{", italic_e="}", split= False)
@@ -79,7 +79,7 @@ def main():
                 elif length_of_name == 4:
                     SUBRANK = SP_STEM[2]
                     SUBEPITHET = SP_STEM[3]
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@%s \\textit{%s}} ''' % (
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@\\textbf{%s \\textit{%s}}} ''' % (
                         GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK, SUBEPITHET)
                 elif length_of_name == 5:
                     SUBRANK = SP_STEM[2]
@@ -93,11 +93,11 @@ def main():
                     SUBRANK2 = SP_STEM[4]
                     SUBEPITHET = SP_STEM[3]
                     SUBEPI2 = SP_STEM[5]
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@%s \\textit{%s}!%s %s@%s \\textit{%s}} ''' % (
-                        GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK, \
-                                SUBEPITHET, SUBRANK2, SUBEPI2, SUBRANK2, SUBEPI2)
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@\\textbf{%s \\textit{%s} %s \\textit{%s}}} ''' % (
+                        GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK2, \
+                                SUBEPI2, SUBRANK, SUBEPITHET, SUBRANK2, SUBEPI2)
                 else:
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}} ''' % (
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textbf{\\textit{%s}}} ''' % (
                         GENUS, GENUS, EPITHET, EPITHET)
                 ### /IDX
                 joinedItem = ' & '.join(redlist[item]) + ITEM_IDX + ZH_IDX + '\\\\' + '\n'

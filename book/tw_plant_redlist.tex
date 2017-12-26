@@ -6,6 +6,7 @@
 \usepackage{amsmath,amsthm,amssymb} % for mathematical fonts
 \usepackage{bold-extra}
 \usepackage{caption}
+\usepackage{doi}
 \usepackage{enumitem}
 \usepackage{epstopdf}   % figure eps to pdf
 \usepackage{float}      % floating environment
@@ -17,6 +18,7 @@
 % multi column
 \usepackage{multicol}
 \usepackage{footnote}
+\usepackage{setspace} 
 \usepackage{pdfpages} % pdfpage
 \usepackage{xcolor}
 \usepackage{color}
@@ -26,8 +28,9 @@
 \usepackage{xeCJK}
 %\setmainfont{Noto Serif CJK TC Light}
 %\setCJKmainfont{Songti TC}
-\setCJKmainfont{Songti TC}
+\setCJKmainfont{Songti TC Light}
 \newCJKfontfamily\Kai{Noto Sans T Chinese Light}
+\newCJKfontfamily\Song{Noto Sans T Chinese Regular}
 \newCJKfontfamily\Hangul{Batang}
 \newCJKfontfamily\Kana{YuMincho}
 \XeTeXlinebreaklocale "zh"
@@ -48,13 +51,24 @@
 \copypagestyle{chapter*}{headings}
 \setlength{\headwidth}{\stockwidth+5em}
 \makerunningwidth{memoirStylePages}{\headwidth}
-\definecolor{myred}{RGB}{255,0,0}
+\definecolor{mydarkgrey}{RGB}{102,100,100}
+\definecolor{mylightgrey}{RGB}{220,221,221}
+\definecolor{myred}{RGB}{230,0,18}
+\definecolor{mylightred}{RGB}{251,218,200}
+\definecolor{myorange}{RGB}{243,151,0}
+\definecolor{mylightorange}{RGB}{255,236,210}
+\definecolor{myyellow}{RGB}{255,226,0}
+\definecolor{mylightyellow}{RGB}{255,250,222}
+\definecolor{mygreen}{RGB}{219,224,0}
+\definecolor{mylightgreen}{RGB}{249,249,218}
+
+
 \newcommand\frameboxl[1]{%
-  \fcolorbox{myred}{myred}{\makebox[2cm][l]{\textcolor{white}{\bfseries#1}}}%
+  \fcolorbox{red}{red}{\makebox[2cm][l]{\textcolor{white}{\bfseries#1}}}%
 }
 
 \newcommand\frameboxr[1]{%
-  \fcolorbox{myred}{myred}{\makebox[2cm][r]{\textcolor{white}{\bfseries#1}}}%
+  \fcolorbox{red}{red}{\makebox[2cm][r]{\textcolor{white}{\bfseries#1}}}%
 }
 \renewcommand\rightmark{The Red List of Vascular Plants of Taiwan, 2017}
 \renewcommand\leftmark{2017 臺灣維管束植物紅皮書名錄}
@@ -149,9 +163,11 @@
 \exhyphenpenalty=100000
 \hyphenpenalty=100000
 
-\titleformat*{\chapter}{\normalfont\huge\Kai\color{myred}}
-\titleformat*{\section}{\normalfont\Large\Kai\color{myred}}
+\titleformat*{\chapter}{\normalfont\huge\Kai\color{red}}
+\titleformat*{\section}{\normalfont\Large\Kai\color{red}}
 \usepackage{tabu}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 \pagestyle{memoirStylePages}
 \begin{document}
@@ -186,10 +202,11 @@
     \addcontentsline{toc}{chapter}{\indexname}
     \begin{footnotesize}
     \pagestyle{memoirStylePages}
-    因篇幅關係，僅列出種及種下單位之學名不含作者。括號內的學名代表該分類群在本名錄中所接受的學名(中名索引亦同)。\\
+    因篇幅關係，學名索引中僅列出種及種下單位之學名不含作者，粗體字為受脅物種(CR、EN 以及 VU)。
+    括號內的學名代表該分類群在本名錄中所接受的學名(中名索引亦同)。\\
     例如：\\
     
-    \textit{Adenia formosana} (= \textit{Adenia heterophylla}) ，\\
+    \textit{Adenia formosana} (= \textit{Adenia heterophylla}) \\
     
     \noindent 其中 \textit{Adenia heterophylla} 為本名錄中所接受的學名，而 \textit{Adenia formosana} 
     為同物異名(包含鑑定錯誤、非法、無效以及不同分類觀念下之學名)

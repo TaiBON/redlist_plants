@@ -12,6 +12,8 @@ conn = pg.connect(DSN)
 
 
 def getChecklist(output, family_table, ptype, export_dir = 'lists'):
+
+    threatened = ['VU', 'EN', 'CR']
     f = open(output, 'w')
     NUM_BEGIN = '\\begin{enumerate}'
     NUM_END = '\end{enumerate}'
@@ -111,13 +113,23 @@ def getChecklist(output, family_table, ptype, export_dir = 'lists'):
                             ZH_NAME = splist[sp][2] + '(' + '、'.join(ZH_NAME_SYN) + ')'
                             SIDX = []
                             for syn in range(0, len(ZH_NAME_SYN)):
-                                SIDX.append('\index{%s@{%s(=%s)}}' % (ZH_NAME_SYN[syn], ZH_NAME_SYN[syn], splist[sp][2]) )
-                            ITEM_ZH_IDX = ''' \index{%s} %s''' % (splist[sp][2], ' '.join(SIDX) )
+                                if IUCN_CAT in threatened:
+                                    SIDX.append('\index{%s@{\Song{%s(=%s)}}}' % (ZH_NAME_SYN[syn], ZH_NAME_SYN[syn], splist[sp][2]) )
+                                else:
+                                    SIDX.append('\index{%s@{%s(=%s)}}' % (ZH_NAME_SYN[syn], ZH_NAME_SYN[syn], splist[sp][2]) )
+                            if IUCN_CAT in threatened:
+                                ITEM_ZH_IDX = ''' \index{%s@{\Song{%s}}} %s''' % (splist[sp][2], splist[sp][2], ' '.join(SIDX) )
+                            else:
+                                ITEM_ZH_IDX = ''' \index{%s} %s''' % (splist[sp][2], ' '.join(SIDX) )
                         else:
                             ZH_NAME = splist[sp][2]
-                            ITEM_ZH_IDX = '''\index{%s}''' % ZH_NAME
+                            if IUCN_CAT in threatened:
+                                ITEM_ZH_IDX = '''\index{%s@{\Song{%s}}}''' % (ZH_NAME, ZH_NAME)
+                            else:
+                                ITEM_ZH_IDX = '''\index{%s}''' % ZH_NAME
 
                         ITEM_ZH = ZH_NAME
+                        ITEM_ZH = '''\\href{\detokenize{http://taibnet.sinica.edu.tw/chi/taibnet_species_list.php?T2=%s&T2_new_value=true&fr=y}}{%s}''' % (splist[sp][2], ZH_NAME)
                         EPITHET = splist[sp][0].split(' ')[1]
                         FULLNAME = splist[sp][5].replace('&', '\&')
                         GENUS_H = GENUS[0] + '.'
@@ -183,8 +195,12 @@ synFGenus, synFSpec, synFSpec, synFSubrank, synFSubEpi, synFSubrank, synFSubEpi,
                             SUBEPITHET = SP_STEM[3]
                             #ITEM_STEM = '''        \item[] \\textit{%s. %s} %s \\textit{%s} ''' % (
                             #    G_ABB, EPITHET, SUBRANK, SUBEPITHET)
-                            ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@%s \\textit{%s}} ''' % (
-                                GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK, SUBEPITHET)
+                            if IUCN_CAT in threatened:
+                                ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@\\textbf{%s \\textit{%s}}} ''' % (
+                                    GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK, SUBEPITHET)
+                            else:
+                                ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@%s \\textit{%s}} ''' % (
+                                    GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK, SUBEPITHET)
                         elif length_of_name == 5:
                             SUBRANK = SP_STEM[2]
                             CROSS = SP_STEM[3]
@@ -203,13 +219,23 @@ synFGenus, synFSpec, synFSpec, synFSubrank, synFSubEpi, synFSubrank, synFSubEpi,
                             #ITEM_STEM = '''        \item[] \\textit{%s. %s} %s \\textit{%s} %s \\textit{%s} ''' % (
                             #    G_ABB, EPITHET, SUBRANK, \
                             #            SUBEPITHET, SUBRANK2, SUBEPI2)
-                            ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@%s \\textit{%s} %s \\textit{%s}} ''' % (
-                                GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK2, \
+                            if IUCN_CAT in threatened:
+                                ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@\\textbf{%s \\textit{%s} %s \\textit{%s}}} ''' % (
+                                    GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK2, \
+                                        SUBEPI2, SUBRANK, SUBEPITHET, SUBRANK2, SUBEPI2)
+                            else:
+                                ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@%s \\textit{%s} %s \\textit{%s}} ''' % (
+                                    GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK2, \
                                         SUBEPI2, SUBRANK, SUBEPITHET, SUBRANK2, SUBEPI2)
                         else:
                             # ITEM_STEM = '''        \item[] \\textit{%s. %s} ''' % (G_ABB, EPITHET)
-                            ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}} ''' % (
-                                GENUS, GENUS, EPITHET, EPITHET)
+                            if IUCN_CAT in threatened:
+                                ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textbf{\\textit{%s}}} ''' % (
+                                    GENUS, GENUS, EPITHET, EPITHET)
+                            else:
+                                ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}} ''' % (
+                                    GENUS, GENUS, EPITHET, EPITHET)
+                        # 為了處理上的方便，forma 在資料表中以 fo. 呈現，輸出時再取代回 f.
                         ff.write(ITEM + STEM.replace('fo.', ' f. ') + ITEM_IDX.replace('fo.', 'f.') + SYN_IDX + ITEM_ZH + ITEM_ZH_IDX + endemic + iucn + '\n')
                     ff.write('  '+ITEM_END + '\n')
         ff.write('  '+ITEM_END + '\n')
