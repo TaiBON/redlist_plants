@@ -95,7 +95,7 @@ def getChecklist(output, family_table, ptype, export_dir = 'lists'):
                         IUCN_CAT = splist[sp][3]
                         # check the endemic species
                         ENDEMIC = splist[sp][4]
-                        ENDEMIC = ENDEMIC.replace(' ','')
+                        #ENDEMIC = ENDEMIC.replace(' ','')
                         CRITERIA = splist[sp][6]
                         if ENDEMIC == 'Endemic':
                             endemic = '\#'

@@ -74,18 +74,18 @@ def main():
                 if length_of_name == 3:
                     CROSS = SP_STEM[1]
                     EPITHET = SP_STEM[2]
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s %s@%s \\textit{%s}|textbf} ''' % (
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s %s@%s \\textit{%s}} ''' % (
                         GENUS, GENUS, CROSS, EPITHET, CROSS, EPITHET)
                 elif length_of_name == 4:
                     SUBRANK = SP_STEM[2]
                     SUBEPITHET = SP_STEM[3]
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@\\textbf{%s \\textit{%s}}|textbf} ''' % (
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s@\\textbf{%s \\textit{%s}}} ''' % (
                         GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK, SUBEPITHET)
                 elif length_of_name == 5:
                     SUBRANK = SP_STEM[2]
                     CROSS = SP_STEM[3]
                     SUBEPITHET = SP_STEM[4]
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s!%s\\textit{%s}|textbf} ''' % (
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s!%s\\textit{%s}} ''' % (
                         GENUS, GENUS, EPITHET, EPITHET, SUBRANK, CROSS, \
                                 SUBEPITHET, SUBEPITHET)
                 elif length_of_name == 6:
@@ -93,11 +93,11 @@ def main():
                     SUBRANK2 = SP_STEM[4]
                     SUBEPITHET = SP_STEM[3]
                     SUBEPI2 = SP_STEM[5]
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@\\textbf{%s \\textit{%s} %s \\textit{%s}}|textbf} ''' % (
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@\\textbf{%s \\textit{%s} %s \\textit{%s}}} ''' % (
                         GENUS, GENUS, EPITHET, EPITHET, SUBRANK, SUBEPITHET, SUBRANK2, \
                                 SUBEPI2, SUBRANK, SUBEPITHET, SUBRANK2, SUBEPI2)
                 else:
-                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textbf{\\textit{%s}}|textbf} ''' % (
+                    ITEM_IDX = ''' \index{%s@\\textit{%s}!%s@\\textbf{\\textit{%s}}} ''' % (
                         GENUS, GENUS, EPITHET, EPITHET)
                 ### /IDX
                 joinedItem = ' & '.join(redlist[item]) + ITEM_IDX + ZH_IDX + '\\\\' + '\n'

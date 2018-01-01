@@ -28,9 +28,9 @@
 \usepackage{xeCJK}
 %\setmainfont{Noto Serif CJK TC Light}
 %\setCJKmainfont{Songti TC}
-\setCJKmainfont{Songti TC Light}
+\setCJKmainfont{Songti TC}
 \newCJKfontfamily\Kai{Noto Sans T Chinese Light}
-\newCJKfontfamily\Song{Noto Sans T Chinese Regular}
+\newCJKfontfamily\Song{Songti TC Bold}
 \newCJKfontfamily\Hangul{Batang}
 \newCJKfontfamily\Kana{YuMincho}
 \XeTeXlinebreaklocale "zh"
@@ -141,8 +141,8 @@
 \usepackage{titlesec}
 \titleformat{\chapter}{\normalfont\huge}{\thechapter.}{20pt}{\huge}
 \usepackage{titletoc}
-\renewcommand{\contentsname}{\Kai{目\hspace{2em}錄}}
-\renewcommand\indexname{\Kai{學名索引}}
+\renewcommand{\contentsname}{目\hspace{2em}錄}
+\renewcommand\indexname{學名索引}
 \renewcommand\tablename{\color{red}{\Kai{表}}}
 \renewcommand\thetable{\arabic{chapter}.\arabic{table}}
 \renewcommand\figurename{\color{red}{\Kai{圖}}}
@@ -175,6 +175,7 @@
     % no break words
     \begin{Kai}
         \include{titlepage}
+    \end{Kai}
         \pagenumbering{roman}
         \tableofcontents
         \cleardoublepage
@@ -184,18 +185,15 @@
         \linespread{1.5}\selectfont
         \include{ch1_intro}
         \include{ch2_assessment}
-    \end{Kai}
     \include{ch3_redlist}
     \large\selectfont
     \linespread{1}\selectfont
-    \begin{Kai}
-        \normalsize\selectfont
-        \include{ch5_acknowledgement}
-        \normalsize\selectfont
-        \linespread{1}\selectfont
-        \input{ch6_references}
-        \addcontentsline{toc}{chapter}{參考文獻}
-    \end{Kai}
+    \normalsize\selectfont
+    \include{ch5_acknowledgement}
+    \normalsize\selectfont
+    \linespread{1}\selectfont
+    \input{ch6_references}
+    \addcontentsline{toc}{chapter}{參考文獻}
     \cleardoublepage
     \phantomsection
     \chapter*{索引}
@@ -217,7 +215,5 @@
         \end{flushleft}
     \end{footnotesize}
     \normalsize\selectfont
-    \begin{Kai}
     \input{copyright}
-    \end{Kai}
 \end{document}
