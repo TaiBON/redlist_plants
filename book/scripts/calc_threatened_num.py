@@ -60,10 +60,10 @@ def main():
 其中屬於極危(Critically Endangered)類別有 %i 分類群，
 瀕危(Endangered)類別有 %i 分類群，易危(Vulnerable)類別有 %i 分類群。
 另有 %i 分類群歸於接近受脅(Near Threatened)的類別，
-%i 分類群歸於資料缺乏(Data Deficient)的類別，其餘 %i 分類群則屬於暫無危機(Least Concern)的類別。
+%i 分類群歸於資料缺乏(Data Deficient)的類別，其餘 %s 分類群則屬於暫無危機(Least Concern)的類別。
 國家受威脅和接近受脅的野生維管束植物種數分別占評估種數的 %.1f \\%% 及 %.1f \\%%。 
 ''' % ("{:,}".format(alltaxa), "{:,}".format(na), "{:,}".format(evaluated), ex, 
-        ew, re, "{:,}".format(threatened), cr, en, vu, nt, dd, lc, national_threatened_ratio, national_nt_ratio)
+        ew, re, "{:,}".format(threatened), cr, en, vu, nt, dd, "{:,}".format(lc), national_threatened_ratio, national_nt_ratio)
 
     RESULT_STATS = '''
 \indent 臺灣的野生維管束植物共 %s 分類群，
@@ -74,10 +74,10 @@ def main():
 其中屬於極危(Critically Endangered)類別有 %i 分類群，
 瀕危(Endangered)類別有 %i 分類群，易危(Vulnerable)類別有 %i 分類群。
 另有 %i 分類群歸於接近受脅(Near Threatened)的類別，%i 分類群歸於資料缺乏(Data Deficient)的類別，
-其餘 %i 分類群則屬於暫無危機(Least Concern)的類別。國家受威脅及接近受脅的野生維管束植物種數分別占評估種數的 %.1f \\%%及 %.1f \\%%。
+其餘 %s 分類群則屬於暫無危機(Least Concern)的類別。國家受威脅及接近受脅的野生維管束植物種數分別占評估種數的 %.1f \\%%及 %.1f \\%%。
 所有納入評估候選的維管束植物的名單及其個別的保育類別亦另列一表，供作參考。\\\\
 ''' % ("{:,}".format(alltaxa), "{:,}".format(na), "{:,}".format(evaluated), ex, ew, re, 
-        "{:,}".format(threatened), cr, en, vu, nt, dd, lc, national_threatened_ratio, national_nt_ratio)
+        "{:,}".format(threatened), cr, en, vu, nt, dd, "{:,}".format(lc), national_threatened_ratio, national_nt_ratio)
 
     with open('ch0_abstract_content.tex', 'w') as f:
         f.write(ABSTRACT)

@@ -22,6 +22,9 @@
 \usepackage{pdfpages} % pdfpage
 \usepackage{xcolor}
 \usepackage{color}
+\usepackage{xparse} % raise rules
+\usepackage{afterpage}
+\usepackage{pagecolor} % for titlepage
 
 %%%%% <XETEX> %%%%%
 \usepackage{fontspec}
@@ -49,9 +52,10 @@
 \copypagestyle{memoirStylePages}{headings}
 \copypagestyle{chapter}{headings}
 \copypagestyle{chapter*}{headings}
+\copypagestyle{abstract}{headings}
 \setlength{\headwidth}{\stockwidth+5em}
 \makerunningwidth{memoirStylePages}{\headwidth}
-\definecolor{mydarkgrey}{RGB}{102,100,100}
+\definecolor{mydarkgrey}{RGB}{89,87,88}
 \definecolor{mylightgrey}{RGB}{220,221,221}
 \definecolor{myred}{RGB}{230,0,18}
 \definecolor{mylightred}{RGB}{251,218,200}
@@ -62,26 +66,40 @@
 \definecolor{mygreen}{RGB}{219,224,0}
 \definecolor{mylightgreen}{RGB}{249,249,218}
 
-
 \newcommand\frameboxl[1]{%
   \fcolorbox{red}{red}{\makebox[2cm][l]{\textcolor{white}{\bfseries#1}}}%
+  \hspace*{-1.5cm}
 }
-
 \newcommand\frameboxr[1]{%
+  \hspace*{-1.5cm}
   \fcolorbox{red}{red}{\makebox[2cm][r]{\textcolor{white}{\bfseries#1}}}%
+}
+\newcommand\frameboxchpl[1]{%
+  \fcolorbox{red}{red}{\makebox[2cm][l]{\textcolor{white}{\bfseries#1}}}%
+  \hspace*{-2.6cm}
+}
+\newcommand\frameboxchpr[1]{%
+  \hspace*{-2.6cm}
+  \fcolorbox{red}{red}{\makebox[2cm][r]{\textcolor{red}{\bfseries#1}}}%
+}
+\newcommand\frameboxabstractl[1]{%
+  \fcolorbox{white}{white}{\makebox[2cm][l]{\textcolor{red}{\bfseries#1}}}%
+  \hspace*{-2.6cm}
 }
 \renewcommand\rightmark{The Red List of Vascular Plants of Taiwan, 2017}
 \renewcommand\leftmark{2017 臺灣維管束植物紅皮書名錄}
 \makeoddhead{memoirStylePages}{}{}{\footnotesize\leftmark~\frameboxl{\footnotesize\thepage}}
 \makeevenhead{memoirStylePages}{\frameboxr{\footnotesize\thepage}~\footnotesize\rightmark}{}{}
-\makeoddhead{chapter}{}{}{\footnotesize\leftmark~\frameboxl{\footnotesize\thepage}}
-\makeevenhead{chapter}{\frameboxr{\footnotesize\thepage}~\footnotesize\rightmark}{}{}
+\makeoddhead{chapter}{}{}{\footnotesize\leftmark~\frameboxchpl{\footnotesize\thepage}}
+%\makeevenhead{chapter}{\frameboxchpr{\footnotesize\thepage}~\footnotesize\rightmark}{}{}
+\makeoddhead{chapter*}{}{}{\footnotesize\leftmark~\frameboxchpl{\footnotesize\thepage}}
+\makeoddhead{abstract}{}{}{\footnotesize{\textcolor{white}{\leftmark}}~\frameboxabstractl{\footnotesize\thepage}}
 % %\makeheadrule{memoirStylePages}{\textwidth}{\normalrulethickness}
 \makeevenfoot{memoirStylePages}{}{}{}
 \makeoddfoot{memoirStylePages}{}{}{}
-\makepsmarks{memoirStylePages}{%
-       \createmark{chapter}{left}{nonumber}{}{}
-}
+%\makepsmarks{memoirStylePages}{%
+%       \createmark{chapter}{left}{nonumber}{}{}
+%}
 
 %%%%% </HEADER> %%%%%
 
@@ -95,13 +113,13 @@
       \@restonecoltrue
    \fi
    \setlength{\columnseprule}{0pt}
-   \setlength{\columnsep}{20pt}
+   \setlength{\columnsep}{22pt}
    \begin{multicols}{4}[\section*{\indexname}]
    \markboth{\MakeUppercase\indexname}%
             {\MakeUppercase\indexname}%
    \thispagestyle{plain}
    \setlength{\parindent}{0pt}
-   \setlength{\parskip}{0pt minus 2pt}
+   \setlength{\parskip}{0pt minus 2.2pt}
    \relax
    \let\item\@idxitem}%
   {\end{multicols}\if@restonecol\onecolumn\else\clearpage\fi}
@@ -149,7 +167,9 @@
 %\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
 \renewcommand\appendixname{附\hspace{2em}錄}
 %\renewcommand*\contentsname{Table of Contents}
-\renewcommand{\bibname}{參考文獻}
+%\renewcommand{\bibname}{6. 參考文獻}
+\renewcommand{\bibname}{6.~~~~參考文獻}
+
 \renewcommand\bibsection{\chapter*{\refname}}
 
 \renewcommand{\labelenumi}{\arabic{enumi}.}
@@ -193,7 +213,7 @@
     \normalsize\selectfont
     \linespread{1}\selectfont
     \input{ch6_references}
-    \addcontentsline{toc}{chapter}{參考文獻}
+    \addcontentsline{toc}{chapter}{6~~~~參考文獻}
     \cleardoublepage
     \phantomsection
     \chapter*{索引}
