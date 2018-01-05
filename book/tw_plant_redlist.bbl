@@ -1,11 +1,17 @@
 \begin{thebibliography}{}
 
-
 \bibitem[王震哲、邱文良、張和明, 2012]{張和明:2012wn}
 王震哲、邱文良、張和明 (2012)
 \newblock {\em {臺灣維管束植物紅皮書初評名錄}}。
-\newblock 特有生物研究保育中心、臺灣植物分類學會，
+\newblock 特有生物研究保育中心 {\&} 臺灣植物分類學會，
   南投，臺灣。
+
+\bibitem[Boufford et~al., 2003]{Boufford:2003bw}
+Boufford, D.~E., Ohashi, H., Huang, T.-C., Hsieh, C.-F., Tsai, J.-L., Yang,
+  K.-C., Kuoh, C.-S., and Hsiao, A. (2003).
+\newblock {A checklist of the vascular plants of Taiwan}.
+\newblock In of~the Flora~of Taiwan, E.~C., editor, {\em Flora of Taiwan, Vol.
+  6}, pages 15--139. Department of Botany, National Taiwan University, Taipei.
 
 \bibitem[Christenhusz et~al., 2011]{Christenhusz:2011wm}
 Christenhusz, M. J.~M., Reveal, J.~L., Farjon, A., Gardner, M.~F., Mill, R.~R.,
@@ -34,6 +40,12 @@ Gibbs, D., Chamberlain, D., and Argent, G. (2011).
 Gibbs, D. and Chen, Y. (2009).
 \newblock {\em {The Red List of Maples}}.
 \newblock Botanic Gardens Conservation International (BGCI), Richmond, UK.
+
+\bibitem[Holm et~al., 1997]{Holm:1997um}
+Holm, L., Doll, J., Holm, E., Pancho, J., and Herberger, J.~P. (1997).
+\newblock {\em {World Weeds}}.
+\newblock Natural Histories and Distribution. John Wiley {\&} Sons, New York,
+  NY.
 
 \bibitem[{IUCN}, 2012a]{IUCN:2012tl}
 {IUCN} (2012a).
@@ -79,15 +91,22 @@ Oldfield, S., Lusty, C., and MacKinven, A. (1998).
 \newblock {\em {The World List of Threatened Trees}}.
 \newblock World Conservation Press, Cambridge, UK.
 
+\bibitem[{PPG I}, 2016]{Schneider:2016hr}
+{PPG I} (2016).
+\newblock {A community-derived classification for extant lycophytes and ferns}.
+\newblock {\em Journal of Systematics and Evolution}, 54(6):563--603.
+
 \bibitem[Rodrigues et~al., 2006]{Rodrigues:2006em}
 Rodrigues, A., Pilgrim, J., Lamoreux, J., Hoffmann, M., and Brooks, T. (2006).
 \newblock {The value of the IUCN Red List for conservation}.
 \newblock {\em Trends in Ecology {\&} Evolution}, 21(2):71--76.
 
-\bibitem[Schneider et~al., 2016]{Schneider:2016hr}
-Schneider, H., Smith, A.~R., Hovenkamp, P., and Prado, J. (2016).
-\newblock {A community-derived classification for extant lycophytes and ferns}.
-\newblock {\em Journal of Systematics and Evolution}, 54(6):563--603.
+\bibitem[{The Angiosperm Phylogeny Group},
+  2016]{TheAngiospermPhylogenyGroup:2016hc}
+{The Angiosperm Phylogeny Group} (2016).
+\newblock {An update of the Angiosperm Phylogeny Group classification for the
+  orders and families of flowering plants: APG IV}.
+\newblock {\em Botanical Journal of the Linnean Society}, 181(1):1--20.
 
 \bibitem[Townsend et~al., 2007]{Townsend:2007tp}
 Townsend, A.~J., de~Lange, P.~J., Duffy, C. A.~J., Miskelly, C.~M., and Molloy,
@@ -100,6 +119,12 @@ Walter, K.~S. and Gillett, H.~J., editors (1998).
 \newblock {\em {1997 IUCN Red List of Threatened Plants. Complied by the World
   Conservation Monitoring Center, IUCN}}.
 \newblock The World Conservation Union, Gland, Switzerland and Cambridge, UK.
+
+\bibitem[Wang and Lu, 2012]{Wang:2012tr}
+Wang, J.-C. and Lu, C.-T., editors (2012).
+\newblock {\em {\emph{Flora of Taiwan, Second Edition {\textendash}
+  Supplement}}}.
+\newblock National Taiwan Normal University, Taipei.
 
 \bibitem[Wu et~al., 2004]{Wu:2004ja}
 Wu, S.-H., Hsieh, C.-F., Chaw, S.-M., and Rejm{\'a}nek, M. (2004).

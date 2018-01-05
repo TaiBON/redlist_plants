@@ -17,6 +17,7 @@
 \usepackage{libertine}
 % multi column
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{footnote}
 \usepackage{setspace} 
 \usepackage{pdfpages} % pdfpage
@@ -25,6 +26,7 @@
 \usepackage{xparse} % raise rules
 \usepackage{afterpage}
 \usepackage{pagecolor} % for titlepage
+\usepackage{tcolorbox} 
 
 %%%%% <XETEX> %%%%%
 \usepackage{fontspec}
@@ -197,7 +199,17 @@
         \include{titlepage}
     \end{Kai}
         \pagenumbering{roman}
+        \noindent\begin{minipage}[c]{\textwidth}
         \tableofcontents
+        %\end{minipage}
+        %\begin{minipage}[c]{0.4\textwidth}
+        \vspace{0.5in}
+        \footnotesize\linespread{1.0}\selectfont
+        封面照片/\\
+        {\mbox{\color{red}\rule[-0.5mm]{1mm}{0.34cm}~~}}\textit{Rhododendron farrerae} Sweet \\
+        丁香杜鵑~~NT~張和明/攝 \\
+        \normalsize\selectfont
+        \end{minipage}
         \cleardoublepage
         \pagenumbering{arabic}
         \setcounter{page}{1}
