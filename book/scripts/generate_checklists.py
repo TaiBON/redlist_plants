@@ -174,7 +174,7 @@ synFGenus, synFSpec, synFSpec, synFSubrank, synFSubEpi, synFSubrank, synFSubEpi,
                                     synFSubEpi1 = synFStem[3]
                                     synFSubrank2 = synFStem[4]
                                     synFSubEpi2 = synFStem[5]
-                                    synIndexFor = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@%s \\textit{%s} %s \\textit{%s}{\\\\\\noindent(=%s)}} ''' % (synFGenus, synFGenus, synFSpec, synFSpec, synFSubrank1,synFSubEpi1, synFSubrank2, synFSubEpi2, synFSubrank1, synFSubEpi1, synFSubrank2, synFSubEpi2, forNameForSyn)
+                                    synIndexFor = ''' \index{%s@\\textit{%s}!%s@\\textit{%s}!%s %s %s %s@%s \\textit{%s} %s \\textit{%s}{\\\\\\noindent~~(=%s)}} ''' % (synFGenus, synFGenus, synFSpec, synFSpec, synFSubrank1,synFSubEpi1, synFSubrank2, synFSubEpi2, synFSubrank1, synFSubEpi1, synFSubrank2, synFSubEpi2, forNameForSyn)
                                     synIndexAll.append(synIndexFor)
                                 else:
                                     print('Exception caught! Synonyms')

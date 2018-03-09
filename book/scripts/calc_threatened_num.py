@@ -65,12 +65,29 @@ def main():
 ''' % ("{:,}".format(alltaxa), "{:,}".format(na), "{:,}".format(evaluated), ex, 
         ew, re, "{:,}".format(threatened), cr, en, vu, nt, dd, "{:,}".format(lc), national_threatened_ratio, national_nt_ratio)
 
+    ABSTRACT_EN = '''
+This report assessed all of the wild vascular plants based on the
+IUCN (International Union for Conservation of Nature) Red List Categories and Criteria.
+A total of %s wild plants were included in the candidate assessment list,
+and %s of which did not proceed to be evaluated because of being determined 
+as Not Applicable (NA) to regional assessment. The remaining %s species underwent 
+subsequent evaluation. The results showed %i taxa have been extinct in the wild of Taiwan,
+including %i taxa categorized as Extinct in the Wild (EW) and %i taxa as 
+Regionally Extinct (RE). The three nationally threatened categories include %s taxa, 
+of which %i taxa are Critically Endangered (CR), %i taxa are Endangered (EN) 
+and %i taxa are Vulnerable (VU). Additionally, %i, %i and %s taxa belong to Near Threatened (NT), 
+Data Deficient (DD) and Least Concern (LC), respectively. Nationally 
+threatened and nationally near-threatened wild vascular plants account 
+for %.1f \\%% and %.1f \\%% of the totally evaluated taxa, with respectively.
+''' % ("{:,}".format(alltaxa), "{:,}".format(na), "{:,}".format(evaluated), ex, 
+        ew, re, "{:,}".format(threatened), cr, en, vu, nt, dd, "{:,}".format(lc), national_threatened_ratio, national_nt_ratio)
+
     RESULT_STATS = '''
 \indent 臺灣的野生維管束植物共 %s 分類群，
 其中 %s 分類群不適用(Not Applicable)區域評估篩選條件，
 %s 分類群進入評估流程。評估的結果顯示臺灣有 %i 種野生維管束植物已經滅絕，
 其中 %i 種屬於野外絕滅(Extinct in the Wild)，%i 種屬於區域滅絕(Regionally Extinct)。
-國家受威脅(National Threatened)野生維管束植物共有 %s 分類群，
+國家受威脅(Nationally Threatened)野生維管束植物共有 %s 分類群，
 其中屬於極危(Critically Endangered)類別有 %i 分類群，
 瀕危(Endangered)類別有 %i 分類群，易危(Vulnerable)類別有 %i 分類群。
 另有 %i 分類群歸於接近受脅(Near Threatened)的類別，%i 分類群歸於資料缺乏(Data Deficient)的類別，
@@ -81,6 +98,8 @@ def main():
 
     with open('ch0_abstract_content.tex', 'w') as f:
         f.write(ABSTRACT)
+    with open('ch0_abstract_content_en.tex', 'w') as f:
+        f.write(ABSTRACT_EN)
     with open('ch3_threatened_stats.tex', 'w') as thr:
         thr.write(RESULT_STATS)
     conn.close()

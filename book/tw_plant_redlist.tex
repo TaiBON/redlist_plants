@@ -15,7 +15,7 @@
 \usepackage{apalike} % apalike
 \usepackage{longtable}  % small capital
 \usepackage{libertine}
-% multi column
+% multi column & row
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{footnote}
@@ -26,13 +26,11 @@
 \usepackage{xparse} % raise rules
 \usepackage{afterpage}
 \usepackage{pagecolor} % for titlepage
-\usepackage{tcolorbox} 
+\usepackage{tcolorbox} % use for abstract boundary box 
 
 %%%%% <XETEX> %%%%%
 \usepackage{fontspec}
 \usepackage{xeCJK}
-%\setmainfont{Noto Serif CJK TC Light}
-%\setCJKmainfont{Songti TC}
 \setCJKmainfont{Songti TC}
 \newCJKfontfamily\Kai{Noto Sans T Chinese Light}
 \newCJKfontfamily\Song{Songti TC Bold}
@@ -88,21 +86,21 @@
   \fcolorbox{white}{white}{\makebox[2cm][l]{\textcolor{red}{\bfseries#1}}}%
   \hspace*{-2.6cm}
 }
+\newcommand\frameboxabstractr[1]{%
+  \hspace*{-2.6cm}
+  \fcolorbox{white}{white}{\makebox[2cm][r]{\textcolor{red}{\bfseries#1}}}%
+}
+
 \renewcommand\rightmark{The Red List of Vascular Plants of Taiwan, 2017}
 \renewcommand\leftmark{2017 臺灣維管束植物紅皮書名錄}
 \makeoddhead{memoirStylePages}{}{}{\footnotesize\leftmark~\frameboxl{\footnotesize\thepage}}
 \makeevenhead{memoirStylePages}{\frameboxr{\footnotesize\thepage}~\footnotesize\rightmark}{}{}
 \makeoddhead{chapter}{}{}{\footnotesize\leftmark~\frameboxchpl{\footnotesize\thepage}}
-%\makeevenhead{chapter}{\frameboxchpr{\footnotesize\thepage}~\footnotesize\rightmark}{}{}
 \makeoddhead{chapter*}{}{}{\footnotesize\leftmark~\frameboxchpl{\footnotesize\thepage}}
 \makeoddhead{abstract}{}{}{\footnotesize{\textcolor{white}{\leftmark}}~\frameboxabstractl{\footnotesize\thepage}}
-% %\makeheadrule{memoirStylePages}{\textwidth}{\normalrulethickness}
+\makeevenhead{abstract}{\frameboxabstractr{\footnotesize\thepage}~\footnotesize{\textcolor{white}{\leftmark}}}{}{}
 \makeevenfoot{memoirStylePages}{}{}{}
 \makeoddfoot{memoirStylePages}{}{}{}
-%\makepsmarks{memoirStylePages}{%
-%       \createmark{chapter}{left}{nonumber}{}{}
-%}
-
 %%%%% </HEADER> %%%%%
 
 %%%%% <INDEX> %%%%%
@@ -119,16 +117,22 @@
    \begin{multicols}{4}[\section*{\indexname}]
    \markboth{\MakeUppercase\indexname}%
             {\MakeUppercase\indexname}%
-   \thispagestyle{plain}
+   %\thispagestyle{plain}
    \setlength{\parindent}{0pt}
-   \setlength{\parskip}{0pt minus 2.2pt}
+   \setlength{\parskip}{0pt minus 2pt}
    \relax
    \let\item\@idxitem}%
   {\end{multicols}\if@restonecol\onecolumn\else\clearpage\fi}
 \makeatother
-
 \makeindex
-%\makeindex[name=zh,title={中名索引}]
+
+% add dictionary-like entry
+\newcommand\entry[3][]{\small \noindent\textsf{\textbf{#2}}\ 
+        #3\ifx\relax#1\relax\markboth{#2}{#2}\else\markboth{#1}{#1}\fi
+        \par}\nopagebreak[4]
+
+
+%%%%% </INDEX> %%%%%
 
 \setlist{leftmargin=0.3cm,itemindent=-0.2cm,labelwidth=0.1cm,labelsep=0.05cm,align=left,rightmargin=0.05cm}
 % trim and bleed
@@ -136,23 +140,13 @@
 \setlrmarginsandblock{25mm}{25mm}{*}
 \setulmarginsandblock{20mm}{25mm}{*}
 %\setulmarginsandblock{25mm}{25mm}{*}
-%\settrimmedsize{0.99\stockheight}{0.99\stockwidth}{*}
 \checkandfixthelayout
 
 \setheadfoot{\onelineskip}{\onelineskip}
-%\setheadfoot{2pt}{8mm}
 \setheaderspaces{*}{\onelineskip}{*}
 \checkandfixthelayout
 \quarkmarks
 
-% add dictionary-like entry
-\newcommand\entry[3][]{\small \noindent\textsf{\textbf{#2}}\ 
-        #3\ifx\relax#1\relax\markboth{#2}{#2}\else\markboth{#1}{#1}\fi
-        \par}\nopagebreak[4]
-
-%\usepackage{atbegshi}
-%\AtBeginShipout{\special{pdf: put @thispage <</TrimBox [30.0 30.0 500 600]>>}}
-%\special{pdf: put @thispage <</TrimBox [30.0 30.0 500 600]>>}
 
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
@@ -166,13 +160,9 @@
 \renewcommand\tablename{\color{red}{\Kai{表}}}
 \renewcommand\thetable{\arabic{chapter}.\arabic{table}}
 \renewcommand\figurename{\color{red}{\Kai{圖}}}
-%\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
 \renewcommand\appendixname{附\hspace{2em}錄}
-%\renewcommand*\contentsname{Table of Contents}
 %\renewcommand{\bibname}{6. 參考文獻}
-\renewcommand{\bibname}{6.~~~~參考文獻}
-
-\renewcommand\bibsection{\chapter*{\refname}}
+\renewcommand{\bibname}{6.~~參考文獻}
 
 \renewcommand{\labelenumi}{\arabic{enumi}.}
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
@@ -181,15 +171,19 @@
 
 
 %% No hyphenation
-%\hyphenchar\font=-1
-\exhyphenpenalty=100000
-\hyphenpenalty=100000
+\exhyphenpenalty=9999
+\hyphenpenalty=9999
 
 \titleformat*{\chapter}{\normalfont\huge\Kai\color{red}}
 \titleformat*{\section}{\normalfont\Large\Kai\color{red}}
 \usepackage{tabu}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% https://tex.stackexchange.com/questions/21764/including-a-pseudo-chapter-in-the-table-of-contents
+% it's necessary to add this for hyperref
+\providecommand\phantomsection{}
+
 
 \pagestyle{memoirStylePages}
 \begin{document}
@@ -214,6 +208,7 @@
         \pagenumbering{arabic}
         \setcounter{page}{1}
         \include{ch0_abstract}
+        \include{ch0_abstract_en}
         \linespread{1.5}\selectfont
         \include{ch1_intro}
         \include{ch2_assessment}
