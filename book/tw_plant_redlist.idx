@@ -7460,6 +7460,7 @@
 \indexentry{烏來柯|hyperpage}{79}
 \indexentry{Fagus@\textit{Fagus}!hayatae@\textit{hayatae}|hyperpage}{79}
 \indexentry{臺灣水青岡|hyperpage}{79}
+\indexentry{臺灣山毛櫸@{臺灣山毛櫸(=臺灣水青岡)}|hyperpage}{79}
 \indexentry{Lithocarpus@\textit{Lithocarpus}!amygdalifolius@\textit{amygdalifolius}|hyperpage}{79}
 \indexentry{杏葉石櫟|hyperpage}{79}
 \indexentry{Lithocarpus@\textit{Lithocarpus}!chiaratuangensis@\textbf{\textit{chiaratuangensis}}|hyperpage}{79}
@@ -8815,7 +8816,8 @@
 \indexentry{麵包樹|hyperpage}{90}
 \indexentry{Artocarpus@\textit{Artocarpus}!xanthocarpus@\textbf{\textit{xanthocarpus}}|hyperpage}{90}
 \indexentry{蘭嶼麵包樹@{\Song{蘭嶼麵包樹}}|hyperpage}{90}
-\indexentry{Broussonetia@\textit{Broussonetia}!kazinoki@\textit{kazinoki}|hyperpage}{90}
+\indexentry{Broussonetia@\textit{Broussonetia}!monoica@\textit{monoica}|hyperpage}{90}
+\indexentry{Broussonetia@\textit{Broussonetia}!kazinoki@\textit{kazinoki}{\\\noindent(= \textit{Broussonetia monoica})}|hyperpage}{90}
 \indexentry{小構樹|hyperpage}{90}
 \indexentry{Broussonetia@\textit{Broussonetia}!papyrifera@\textit{papyrifera}|hyperpage}{90}
 \indexentry{構樹|hyperpage}{90}
@@ -10496,6 +10498,7 @@
 \indexentry{海螺菊|hyperpage}{101}
 \indexentry{Hemiphragma@\textit{Hemiphragma}!heterophyllum@\textit{heterophyllum}|hyperpage}{101}
 \indexentry{腰只花|hyperpage}{101}
+\indexentry{異葉紅珠@{異葉紅珠(=腰只花)}|hyperpage}{101}
 \indexentry{Limnophila@\textit{Limnophila}!aromatica@\textbf{\textit{aromatica}}|hyperpage}{101}
 \indexentry{紫蘇草@{\Song{紫蘇草}}|hyperpage}{101}
 \indexentry{Limnophila@\textit{Limnophila}!aromaticoides@\textit{aromaticoides}|hyperpage}{101}
@@ -11011,7 +11014,7 @@
 \indexentry{Microstegium@\textit{Microstegium}!vimineum@\textit{vimineum}|hyperpage}{105}
 \indexentry{柔枝莠竹|hyperpage}{105}
 \indexentry{Milium@\textit{Milium}!effusum@\textit{effusum}|hyperpage}{105}
-\indexentry{粟草|hyperpage}{105}
+\indexentry{栗草|hyperpage}{105}
 \indexentry{Miscanthus@\textit{Miscanthus}!floridulus@\textit{floridulus}|hyperpage}{105}
 \indexentry{五節芒|hyperpage}{105}
 \indexentry{Miscanthus@\textit{Miscanthus}!sinensis@\textit{sinensis}|hyperpage}{105}
@@ -12539,6 +12542,7 @@
 \indexentry{林氏燈籠草@{\Song{林氏燈籠草}}|hyperpage}{116}
 \indexentry{Physalis@\textit{Physalis}!angulata@\textit{angulata}|hyperpage}{116}
 \indexentry{燈籠草|hyperpage}{116}
+\indexentry{苦蘵@{苦蘵(=燈籠草)}|hyperpage}{116}
 \indexentry{Physalis@\textit{Physalis}!peruviana@\textit{peruviana}|hyperpage}{116}
 \indexentry{秘魯苦蘵|hyperpage}{116}
 \indexentry{Physalis@\textit{Physalis}!pubescens@\textit{pubescens}|hyperpage}{116}
