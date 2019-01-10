@@ -29,14 +29,9 @@ Taiwan Vascular Plants Redlist Generator
 ## Steps
 
 1. Install the above dependencies
-2. Setup PostgreSQL database and create a data schema named "nvdimp"
-  ```{sql}
-  CREATE SCHEMA nvdimp
-  ```
+2. Setup PostgreSQL and create a database named "nvdimp"
 3. Import data into twredlist2017 and related tables (TBD)
-
 4. Clone this repository
-
 5. Generate
    ```{sh}
    make all
